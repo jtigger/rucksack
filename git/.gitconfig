@@ -1,0 +1,38 @@
+[user]
+	name = John S. Ryan
+	email = jtigger@infosysengr.com
+
+[color]
+  status = auto
+  diff = auto
+  branch = auto
+  ui = auto
+
+[color "grep"]
+	context = normal
+	filename = white
+	function = normal ul
+	linenumber = cyan
+	match = bold black green
+	selected = bold normal
+	separator = bold blue
+
+[grep]
+	linenumber = true
+	
+
+[alias]
+  m = status
+  b = branch
+  ci = commit
+  co = checkout
+  log1 = !git --no-pager log --pretty=oneline
+  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+  lgn = "!f() { git log --graph --pretty=format:'%Cred%H%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --date=relative $@ | git name-rev --stdin --name-only ; } ; f"
+  st = !git --no-pager diff --name-status --no-color
+  spull = !git-svn fetch && git-svn rebase
+  spush = !git-svn dcommit
+  gp = grep -I --heading --before-context 2 --after-context 2 --show-function --untracked --extended-regexp
+
+[push]
+	default = simple
