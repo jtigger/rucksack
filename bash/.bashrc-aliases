@@ -1,0 +1,4 @@
+alias l='ls -laF'
+alias gg='git gp'
+alias p='ping www.google.com'
+alias bounce='sudo ~/bin/bounce.sh && echo "Waiting for link to reset..." && sleep 5 && echo "Testing connectivity..." && ping www.google.com'
