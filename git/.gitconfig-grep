@@ -1,0 +1,18 @@
+# .gitconfig-grep
+
+# (ref: https://www.kernel.org/pub/software/scm/git/docs/git-config.html ; search for "color.grep.<slot>" )
+[color "grep"]
+	context = normal
+	filename = white
+	function = normal ul
+	linenumber = cyan
+	match = bold black green
+	selected = bold normal
+	separator = bold blue
+
+[grep]
+	linenumber = true
+	
+
+[alias]
+  gp = grep -I --heading --before-context 2 --after-context 2 --show-function --untracked --extended-regexp
