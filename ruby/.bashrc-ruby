@@ -1,1 +1,3 @@
 alias be='bundle exec'
+
+PS1_RUBY="\$(~/.rvm/bin/rvm-prompt)"
