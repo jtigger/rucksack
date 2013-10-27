@@ -1,3 +1,6 @@
 alias be='bundle exec'
 
-PS1_RUBY="\$(~/.rvm/bin/rvm-prompt)"
+PS1_RUBY='$(~/.rvm/bin/rvm-prompt)'
+
+# Add RVM to PATH for scripting
+PATH_RUBY=$HOME/.rvm/bin
