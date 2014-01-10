@@ -1,11 +1,15 @@
-source ~/.bashrc-aliases
-source ~/.bashrc-git
-source ~/.bashrc-ruby
+# Example .bashrc using rucksack; copy and customize.
+RUCKSACK_HOME=~/.rucksack
 
+source "$RUCKSACK_HOME/bash/.bashrc-aliases"
+source "$RUCKSACK_HOME/git/.bashrc-git"
+source "$RUCKSACK_HOME/ruby/.bashrc-ruby"
+source "$RUCKSACK_HOME/bash/solarize"
 
-PS1="[\!] <$PS1_RUBY> \u@\h:\[\033[01;37m\]\W\[\033[00m\]$PS1_GIT\$ \[\033[00m\]"
+NO_COLOR="\[\033[00m\]"
+PS1="[${PS1_HISTORY_ID_COLOR}\!${NO_COLOR}] ${PS1_RUBY_VERSION_COLOR}$PS1_RUBY${NO_COLOR} ${PS1_USERNAME_COLOR}\u${NO_COLOR}@${PS1_HOSTNAME_COLOR}\h${NO_COLOR}:${PS1_CWD_COLOR}\W${PS1_GIT_COLOR}$PS1_GIT${NO_COLOR} \$ ${NO_COLOR}"
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 
-PATH=$PATH:$PATH_RUBY
+export PATH="$PATH:$PATH_RUBY:$RUCKSACK_HOME/bin"
