@@ -1,0 +1,36 @@
+#/bin/bash
+#  precondition: Terminal ANSI colors have been set to match the Solarized color scheme as described in
+#                http://ethanschoonover.com/solarized
+
+SOL_YELLOW="\[\033[00;33m\]"
+SOL_ORANGE="\[\033[01;31m\]"
+SOL_RED="\[\033[00;31m\]"
+SOL_MAGENTA="\[\033[00;35m\]"
+SOL_VIOLET="\[\033[01;35m\]"
+SOL_BLUE="\[\033[00;34m\]"
+SOL_CYAN="\[\033[00;36m\]"
+SOL_GREEN="\[\033[00;32m\]"
+
+if [ "$SOL_SCHEME" == "dark" ]; then
+  SOL_BACKGROUND="\[\033[01;30m\]"  # base03
+  SOL_HIGHLIGHT="\[\033[0;30m\]"    # base02
+  SOL_COMMENT="\[\033[01;32m\]"     # base01
+  SOL_BODY="\[\033[01;34m\]"        # base0
+  SOL_EMPHASIZE="\[\033[01;36m\]"   # base1
+else
+  SOL_BACKGROUND="\[\033[01;37m\]"  # base3
+  SOL_HIGHLIGHT="\[\033[0;37m\]"    # base2
+  SOL_COMMENT="\[\033[01;36m\]"     # base1
+  SOL_BODY="\[\033[01;33m\]"        # base00
+  SOL_EMPHASIZE="\[\033[01;32m\]"   # base01
+fi
+
+export LSCOLORS="exGxfxfxBxfxFxbxbxgxgx"
+
+PS1_HISTORY_ID_COLOR=$SOL_COMMENT
+PS1_RUBY_VERSION_COLOR=$SOL_RED
+PS1_USERNAME_COLOR=$SOL_EMPHASIZE
+PS1_HOSTNAME_COLOR=$SOL_EMPHASIZE
+PS1_CWD_COLOR=$SOL_BLUE
+PS1_GIT_COLOR=$SOL_GREEN
+
