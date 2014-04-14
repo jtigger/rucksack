@@ -3,10 +3,10 @@
 # (ref: https://www.kernel.org/pub/software/scm/git/docs/git-config.html ; search for "color.grep.<slot>" )
 [color "grep"]
 	context = normal
-	filename = white
+	filename = blue
 	function = normal ul
 	linenumber = cyan
-	match = bold black green
+	match = bold yellow white
 	selected = bold normal
 	separator = bold blue
 
