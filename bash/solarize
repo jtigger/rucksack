@@ -1,6 +1,8 @@
 #/bin/bash
 #  precondition: Terminal ANSI colors have been set to match the Solarized color scheme as described in
 #                http://ethanschoonover.com/solarized
+#
+#  ref: color map: http://ethanschoonover.com/solarized#the-values
 
 SOL_YELLOW="\[\033[00;33m\]"
 SOL_ORANGE="\[\033[01;31m\]"
