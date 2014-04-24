@@ -160,7 +160,7 @@
 	<key>BlinkText</key>
 	<false/>
 	<key>CommandString</key>
-	<string></string>
+	<string>export SOL_SCHEME="dark"; source ~/.bashrc; clear</string>
 	<key>CursorBlink</key>
 	<true/>
 	<key>CursorColor</key>
@@ -176,10 +176,10 @@
 	<data>
 	YnBsaXN0MDDUAQIDBAUGGBlYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3AS
 	AAGGoKQHCBESVSRudWxs1AkKCwwNDg8QViRjbGFzc1ZOU05hbWVWTlNTaXplWE5TZkZs
-	YWdzgAOAAiNAMAAAAAAAABAQXU1lbmxvLVJlZ3VsYXLSExQVFlokY2xhc3NuYW1lWCRj
-	bGFzc2VzVk5TRm9udKIVF1hOU09iamVjdF8QD05TS2V5ZWRBcmNoaXZlctEaG1Ryb290
-	gAEIERojLTI3PEJLUllgaWttdniGi5afpqmyxMfMAAAAAAAAAQEAAAAAAAAAHAAAAAAA
-	AAAAAAAAAAAAAM4=
+	YWdzgAOAAiNAMAAAAAAAABAQWkFuZGFsZU1vbm/SExQVFlokY2xhc3NuYW1lWCRjbGFz
+	c2VzVk5TRm9udKIVF1hOU09iamVjdF8QD05TS2V5ZWRBcmNoaXZlctEaG1Ryb290gAEI
+	ERojLTI3PEJLUllgaWttdniDiJOco6avwcTJAAAAAAAAAQEAAAAAAAAAHAAAAAAAAAAA
+	AAAAAAAAAMs=
 	</data>
 	<key>FontAntialias</key>
 	<true/>
@@ -188,7 +188,7 @@
 	<key>ProfileCurrentVersion</key>
 	<real>2.02</real>
 	<key>RunCommandAsShell</key>
-	<true/>
+	<false/>
 	<key>SelectionColor</key>
 	<data>
 	YnBsaXN0MDDUAQIDBAUGFRZYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3AS
@@ -310,6 +310,8 @@
 	<integer>40</integer>
 	<key>type</key>
 	<string>Window Settings</string>
+	<key>useOptionAsMetaKey</key>
+	<true/>
 	<key>whiteColour</key>
 	<data>
 	BAtzdHJlYW10eXBlZIHoA4QBQISEhAdOU0NvbG9yAISECE5TT2JqZWN0AIWEAWMBhARm
