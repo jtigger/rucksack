@@ -1,6 +1,8 @@
 alias be='bundle exec'
 
-PS1_RUBY='$(~/.rvm/bin/rvm-prompt)'
-
+# >>> Enable these if using RVM for Rubies management
+#PS1_RUBY='$(~/.rvm/bin/rvm-prompt)'
 # Add RVM to PATH for scripting
-PATH_RUBY=$HOME/.rvm/bin
+#PATH_RUBY=$HOME/.rvm/bin
+# <<<
+
