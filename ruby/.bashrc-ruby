@@ -6,3 +6,7 @@ alias be='bundle exec'
 #PATH_RUBY=$HOME/.rvm/bin
 # <<<
 
+PS1_RUBY='(x.y.z)'
+PATH_RUBY="$HOME/.rbenv/shims"
+
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
