@@ -9,4 +9,4 @@ alias be='bundle exec'
 PS1_RUBY='(x.y.z)'
 PATH_RUBY="$HOME/.rbenv/shims"
 
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+eval "$(rbenv init -)"
