@@ -2,6 +2,7 @@
 RUCKSACK_HOME=~/.rucksack
 
 source "$RUCKSACK_HOME/bash/.bashrc-aliases"
+source "$RUCKSACK_HOME/brew/.bashrc-brew"
 source "$RUCKSACK_HOME/git/.bashrc-git"
 source "$RUCKSACK_HOME/ruby/.bashrc-ruby"
 source "$RUCKSACK_HOME/bash/solarize"
@@ -10,6 +11,6 @@ NO_COLOR="\[\033[00m\]"
 PS1="[${PS1_HISTORY_ID_COLOR}\!${NO_COLOR}] ${PS1_RUBY_VERSION_COLOR}$PS1_RUBY${NO_COLOR} ${PS1_USERNAME_COLOR}\u${NO_COLOR}@${PS1_HOSTNAME_COLOR}\h${NO_COLOR}:${PS1_CWD_COLOR}\W${PS1_GIT_COLOR}$PS1_GIT${NO_COLOR} \$ ${NO_COLOR}"
 
 ### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
+PATH_HEROKU="/usr/local/heroku/bin"
 
-export PATH="$PATH:$PATH_RUBY:$RUCKSACK_HOME/bin"
+export PATH="$PATH_BREW:$PATH:$PATH_HEROKU:$PATH_RUBY:$RUCKSACK_HOME/bin"
