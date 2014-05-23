@@ -12,16 +12,17 @@
   ui = auto
 
 [alias]
-  m = status
+  l = status
   b = branch
   ci = commit
   co = checkout
-  log1 = !git --no-pager log --pretty=oneline
+  lol = log --graph --oneline --all --decorate=short
   lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
   lgn = "!f() { git log --graph --pretty=format:'%Cred%H%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --date=relative $@ | git name-rev --stdin --name-only ; } ; f"
-  st = !git --no-pager diff --name-status --no-color
+  r = diff --cached
+  st = !git diff --name-status
   spull = !git-svn fetch && git-svn rebase
   spush = !git-svn dcommit
 
 [push]
-	default = simple
+  default = simple
