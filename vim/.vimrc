@@ -4,7 +4,7 @@ set number               " displays line numbers in the left gutter.
 set ruler                " displays current line and column in the status bar.
 syntax enable            " enables syntax highlighting
 colorscheme solarized    " use Solarized (in ~/.vim/colors)
-set background=light     " which of the two Solarized color schemes to use: dark or light.
+set background=dark      " which of the two Solarized color schemes to use: dark or light.
 
 " highlight trailing whitespace
 highlight ExtraWhitespace ctermbg=red
