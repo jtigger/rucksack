@@ -1,0 +1,2 @@
+#!/bin/bash
+git reset --hard `git log --reverse --ancestry-path HEAD..final | head -n 1 | awk -s '{ print $2 }'`
