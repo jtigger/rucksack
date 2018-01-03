@@ -1,9 +1,7 @@
 #/bin/bash
+killall IVPN
 /usr/sbin/networksetup -setairportpower en1 off
-sleep 1
+sleep 10
 /usr/sbin/networksetup -setairportpower en1 on
-
-echo "Waiting for link to reset..."
 sleep 5
-echo "Testing connectivity..."
-ping -c 3 www.google.com
+open /Applications/IVPN.app
