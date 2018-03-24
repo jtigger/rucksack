@@ -46,6 +46,10 @@ map <Leader>l :call RunLastSpec()<CR>
 map <Leader>a :call RunAllSpecs()<CR>
 map <Leader>/ :nohl<CR>
 
+" Tab-navigation shortcuts
+nnoremap H gT
+nnoremap L gt
+
 syntax enable
 set background=dark
 colors solarized
