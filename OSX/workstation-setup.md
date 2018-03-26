@@ -1,25 +1,32 @@
+# Bootstrap
+
+x brew
+x brew cask
+
 # Security
 
-- iVPN
-- Little Snitch
-- 1Password
+x iVPN
+x Little Snitch
+x 1Password
 
 # Baseline
 
-- Hardare Growler
-- iStat Menus
+x iStat Menus
 
-- Alfred 2
-- ShiftIt
+x Alfred 2
+x Things
 
-- Keybase
-- CloudStation
+x Signal
+
+x ShiftIt
+
+x Keybase
+x CloudStation
 - krypton
-- Things
-- Signal
 - VirtualBox
 
 - KeyCastr
+
 
 # Development
 
@@ -38,5 +45,7 @@
 ## Ruby
 - rvm
 
+
+# Extras
 
 
