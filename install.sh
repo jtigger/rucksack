@@ -1,9 +1,24 @@
-#/bin/bash
+#!/usr/bin/env bash
 
-# TODO: collect and make symlinks based on patterns instead of individual files
+# Exit on first error.  Beware: http://mywiki.wooledge.org/BashFAQ/105
+set -e
+
 cd ~
-ln -s rucksack/git/.gitconfig .
-ln -s rucksack/git/.gitconfig-grep .
-ln -s rucksack/vim/.vimrc .
+source rucksack/_core.sh
 
-echo "for bash: Copy from .rucksack/bash/.bashrc.example..."
+mv_to_bak .gitconfig
+ln_to rucksack/git/.gitconfig .
+ 
+mv_to_bak .gitconfig-grep
+ln_to rucksack/git/.gitconfig-grep .
+
+mv_to_bak .vimrc
+ln_to rucksack/vim/.vimrc .
+
+mv_to_bak .bashrc
+mv_from_cruft .bashrc
+if [[ ! -f .bashrc ]]; then
+  cp rucksack/bash/.bashrc.example .bashrc
+  echo "- copied rucksack/bash/.bashrc.example to .bashrc"
+fi
+
