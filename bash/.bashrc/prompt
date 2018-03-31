@@ -1,0 +1,45 @@
+
+function is_in_git_repo() {
+  git status >/dev/null 2>&1
+  echo $?
+}
+
+function recalc_git_stats() {
+  local shortstat="$( git diff --shortstat )"  # Ex: 10 files changed, 58 insertions(+), 1293 deletions(-)
+  _p_WRK_DIFF_FILES=$( echo $shortstat | awk '{print $1}' )
+  _p_WRK_DIFF_ADDS=$( echo $shortstat | awk '{print $4}' )
+  _p_WRK_DIFF_DELS=$( echo $shortstat | awk '{print $6}' )
+
+  local shortstat="$( git diff --shortstat --staged )"  # Ex: 10 files changed, 58 insertions(+), 1293 deletions(-)
+  _p_STG_DIFF_FILES=$( echo $shortstat | awk '{print $1}' )
+  _p_STG_DIFF_ADDS=$( echo $shortstat | awk '{print $4}' )
+  _p_STG_DIFF_DELS=$( echo $shortstat | awk '{print $6}' )
+
+  # git-status-porcelain Ex:
+    # branch.oid 2db58365bbc718762d0cbc189a1eb90e47334f09
+    # branch.head master
+    # branch.upstream origin/master
+    # branch.ab +1 -0
+  _p_BRANCH_REF=$(  git status --porcelain=2 --branch | grep "branch.oid" | awk '{ print $3 }' | cut -c1-7 )
+  _p_BRANCH_NAME=$(  git status --porcelain=2 --branch  | grep "branch.head" | awk '{ print $3 }' )
+  _p_BRANCH_UPSTREAM=$(  git status --porcelain=2 --branch  | grep "branch.upstream" | awk '{ print $3 }' )
+  _p_BRANCH_AHEAD=$(  git status --porcelain=2 --branch  | grep "branch.ab" | awk '{ print $3 }' )
+  _p_BRANCH_BEHIND=$(  git status --porcelain=2 --branch  | grep "branch.ab" | awk '{ print $4 }' )
+}
+
+function recalc_ps1() {
+  if [[ $(is_in_git_repo) -eq "0"  ]]; then
+    recalc_git_stats
+    local branch="${SOL_YELLOW}${_p_BRANCH_REF} (${SOL_EMPHASIZE}${_p_BRANCH_NAME}${SOL_YELLOW})${NO_COLOR} ${SOL_YELLOW}(${SOL_RED}${_p_BRANCH_UPSTREAM}${NO_COLOR} ${SOL_CYAN}${_p_BRANCH_AHEAD} ${SOL_MAGENTA}${_p_BRANCH_BEHIND}${SOL_YELLOW})${NO_COLOR}"
+    local wrk="${SOL_YELLOW}Δ${_p_WRK_DIFF_FILES}${NO_COLOR}(${SOL_GREEN}+${_p_WRK_DIFF_ADDS} ${SOL_RED}-${_p_WRK_DIFF_DELS}${NO_COLOR})"
+    local stg="${SOL_YELLOW}Δ${_p_STG_DIFF_FILES}${NO_COLOR}(${SOL_GREEN}+${_p_STG_DIFF_ADDS} ${SOL_RED}-${_p_STG_DIFF_DELS}${NO_COLOR})"
+    GIT_STATS=" :: ${branch} wrk:${wrk} stg:${stg}"
+  else
+    GIT_STATS=""
+  fi
+  FULL_PWD="${SOL_COMMENT}${PWD}${NO_COLOR}"
+
+  export PS1="${SOL_EMPHASIZE}\u${NO_COLOR}@\H:${FULL_PWD}${GIT_STATS}\n\$ "
+}
+
+PROMPT_COMMAND=recalc_ps1

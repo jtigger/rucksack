@@ -4,6 +4,7 @@
 #
 #  ref: color map: http://ethanschoonover.com/solarized#the-values
 
+NO_COLOR="\[\033[00m\]"
 SOL_YELLOW="\[\033[00;33m\]"
 SOL_ORANGE="\[\033[01;31m\]"
 SOL_RED="\[\033[00;31m\]"
@@ -27,12 +28,4 @@ else
   SOL_EMPHASIZE="\[\033[01;32m\]"   # base01
 fi
 
-export LSCOLORS="exGxfxfxBxfxFxbxbxgxgx"
-
-PS1_HISTORY_ID_COLOR=$SOL_COMMENT
-PS1_RUBY_VERSION_COLOR=$SOL_RED
-PS1_USERNAME_COLOR=$SOL_EMPHASIZE
-PS1_HOSTNAME_COLOR=$SOL_EMPHASIZE
-PS1_CWD_COLOR=$SOL_BLUE
-PS1_GIT_COLOR=$SOL_GREEN
 

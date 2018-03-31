@@ -10,7 +10,7 @@ function ln_to() {
   local src="$1"
   local dest="$2"
   ln -s "${src}" "${dest}"
-  echo "- linked from ${src} to ${dest}"
+  echo -e "- linked from ${src} to ${dest}"
 }
 
 function rm_link() {
@@ -18,8 +18,15 @@ function rm_link() {
   if [[ -L "${file}" ]]; then
     local link=$( get_link_expr_from_ls $file )
     rm "${file}"
-    echo "- removed symlink ${link}"
+    echo -e "- removed symlink ${link}"
   fi
+}
+
+function cp_to() {
+  local src="$1"
+  local dest="$2"
+  cp "${src}" "${dest}"
+  echo -e "- copied from ${src} to ${dest}"
 }
 
 function mv_to_bak() {
@@ -28,7 +35,7 @@ function mv_to_bak() {
 
   if [[ -f "${file}" ]]; then
     mv "${file}" "${file_bak}"
-    echo "- moved ${file} to ${file_bak}"
+    echo -e "- moved ${file} to ${file_bak}"
   fi
 }
 
@@ -37,7 +44,7 @@ function mv_from_bak() {
   local file_bak="${file}.${BAK}"
   if [[ -f "${file_bak}" ]]; then
     mv "${file_bak}" "${file}"
-    echo "- moved ${file_bak} to ${file}"
+    echo -e "- moved ${file_bak} to ${file}"
   fi
 }
 
@@ -47,7 +54,7 @@ function mv_to_cruft() {
 
   if [[ -f "${file}" ]]; then
     mv "${file}" "${file_cruft}"
-    echo "- moved ${file} to ${file_cruft}"
+    echo -e "- moved ${file} to ${file_cruft}"
   fi
 }
 
@@ -57,7 +64,17 @@ function mv_from_cruft() {
 
   if [[ -f "${file_cruft}" ]]; then
     mv "${file_cruft}" "${file}"
-    echo "- moved ${file_cruft} to ${file}"
+    echo -e "- moved ${file_cruft} to ${file}"
   fi
 }
 
+function unpack_file() {
+  local rucksack_file="$1"
+  local dest_file="$2"
+
+  mv_to_bak "${dest_file}"
+  mv_from_cruft "${dest_file}"
+  if [[ ! -f "${dest_file}" ]]; then
+    cp_to "${rucksack_file}" "${dest_file}"
+  fi
+}
