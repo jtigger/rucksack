@@ -7,13 +7,13 @@ function is_in_git_repo() {
 function recalc_git_stats() {
   local shortstat="$( git diff --shortstat )"  # Ex: 10 files changed, 58 insertions(+), 1293 deletions(-)
   _p_WRK_DIFF_FILES=$( echo $shortstat | awk '{print $1}' )
-  _p_WRK_DIFF_ADDS=$( echo $shortstat | awk '{print $4}' )
-  _p_WRK_DIFF_DELS=$( echo $shortstat | awk '{print $6}' )
+  _p_WRK_DIFF_ADDS=$( echo $shortstat | grep --only-matching "\d\+ insertions" | awk '{print $1}' )
+  _p_WRK_DIFF_DELS=$( echo $shortstat | grep --only-matching "\d\+ deletions" | awk '{print $1}' )
 
   local shortstat="$( git diff --shortstat --staged )"  # Ex: 10 files changed, 58 insertions(+), 1293 deletions(-)
   _p_STG_DIFF_FILES=$( echo $shortstat | awk '{print $1}' )
-  _p_STG_DIFF_ADDS=$( echo $shortstat | awk '{print $4}' )
-  _p_STG_DIFF_DELS=$( echo $shortstat | awk '{print $6}' )
+  _p_STG_DIFF_ADDS=$( echo $shortstat | grep --only-matching "\d\+ insertions" | awk '{print $1}' )
+  _p_STG_DIFF_DELS=$( echo $shortstat | grep --only-matching "\d\+ deletions" | awk '{print $1}' )
 
   # git-status-porcelain Ex:
     # branch.oid 2db58365bbc718762d0cbc189a1eb90e47334f09
