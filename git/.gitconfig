@@ -1,9 +1,6 @@
-[user]
-	name = John S. Ryan
-	email = jtigger@infosysengr.com
-
-[include]
-	path = .gitconfig-grep
+[alias]
+  lol = log --graph --oneline --decorate=short
+  lola = log --graph --oneline --all --decorate=short
 
 [color]
   status = auto
@@ -11,28 +8,26 @@
   branch = auto
   ui = auto
 
-[alias]
-  l = status
-  b = branch
-  ci = commit
-  co = checkout
-  lol = log --graph --oneline --decorate=short
-  lola = log --graph --oneline --all --decorate=short
-  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
-  lgn = "!f() { git log --graph --pretty=format:'%Cred%H%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --date=relative $@ | git name-rev --stdin --name-only ; } ; f"
-  r = diff --cached
-  st = !git diff --name-status
-  spull = !git-svn fetch && git-svn rebase
-  spush = !git-svn dcommit
+[commit]
+  # include diff at the bottom of the commit (see 'git commit -v')
+  verbose = true
+
+[core]
+  # APFS is, by default, case-insensitive; avoid nasty case-difference situations...
+  ignoreCase = true
+  editor = vim
+
+[include]
+  path = .gitconfig-grep
 
 [push]
   default = simple
-[core]
-	excludesfile = /Users/jtigger/.gitignore_global
-	editor = vim
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path =
-[mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
+
+[status]
+  ; include anything that's been stashed in `git status`
+  showStash = true
+
+[user]
+  name = John S. Ryan
+  email = jtigger@infosysengr.com
+
