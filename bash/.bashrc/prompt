@@ -32,10 +32,10 @@ function recalc_ps1() {
     recalc_git_stats
     GIT_STATS=" :: ${SOL_YELLOW}${_p_BRANCH_REF}${NO_COLOR}"
     if [[ ${_p_BRANCH_REF} != "(detached)" ]]; then
-      local branch=" (${SOL_EMPHASIZE}${_p_BRANCH_NAME}${SOL_YELLOW})${NO_COLOR} ${SOL_YELLOW}(${SOL_RED}${_p_BRANCH_UPSTREAM}${NO_COLOR} ${SOL_CYAN}${_p_BRANCH_AHEAD} ${SOL_MAGENTA}${_p_BRANCH_BEHIND}${SOL_YELLOW})${NO_COLOR}"
+      local branch="(${SOL_EMPHASIZE}${_p_BRANCH_NAME}${SOL_YELLOW})${NO_COLOR} ${SOL_YELLOW}(${SOL_RED}${_p_BRANCH_UPSTREAM}${NO_COLOR} ${SOL_CYAN}${_p_BRANCH_AHEAD} ${SOL_MAGENTA}${_p_BRANCH_BEHIND}${SOL_YELLOW})${NO_COLOR}"
       local wrk="${SOL_YELLOW}Δ${_p_WRK_DIFF_FILES}${NO_COLOR}(${SOL_GREEN}+${_p_WRK_DIFF_ADDS} ${SOL_RED}-${_p_WRK_DIFF_DELS}${NO_COLOR})"
       local stg="${SOL_YELLOW}Δ${_p_STG_DIFF_FILES}${NO_COLOR}(${SOL_GREEN}+${_p_STG_DIFF_ADDS} ${SOL_RED}-${_p_STG_DIFF_DELS}${NO_COLOR})"
-      GIT_STATS=" ${branch} wrk:${wrk} stg:${stg}"
+      GIT_STATS="${GIT_STATS} ${branch} wrk:${wrk} stg:${stg}"
     else
       GIT_STATS=" :: ${_p_BRANCH_NAME}"
     fi
