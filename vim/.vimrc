@@ -7,8 +7,15 @@ call plug#end()
 
 "----
 
+"==- Appearance
 syntax enable
 set background=light
 colorscheme solarized
-
 set number
+
+"==- Indentation
+set tabstop=2      " how many spaces a tab character is converted to
+set shiftwidth=2   " how many spaces each >> command indents.
+set softtabstop=2  " how many spaces a <Tab> feels like when hitting <Tab> or <BS>
+set autoindent     " copy indent from previous line
+set expandtab      " convert tabs to spaces
