@@ -8,3 +8,5 @@ rucksack/git/install.sh
 rucksack/vim/install.sh
 rucksack/bash/install.sh
 
+rucksack/javascript/install.sh
+
