@@ -3,6 +3,7 @@ CRUFT="rucksack-cruft"
 STATE_DIR="${HOME}/.rucksack"
 LOG_FILE="${STATE_DIR}/install.log"
 INSTALLED_BREW_FORMULA_FILE="${STATE_DIR}/brew-formula-installed-by-rucksack.txt"
+INSTALLED_POCKETS_FILE="${STATE_DIR}/pockets-installed.txt"
 
 # Exit on first error.  Beware: http://mywiki.wooledge.org/BashFAQ/105
 set -e
@@ -11,6 +12,7 @@ function init_state() {
   mkdir -p "${STATE_DIR}"
   touch "${LOG_FILE}"
   touch "${INSTALLED_BREW_FORMULA_FILE}"
+  touch "${INSTALLED_POCKETS_FILE}"
 }
 
 function log() {
@@ -94,6 +96,43 @@ function unpack_file() {
   mv_from_cruft "${dest_file}"
   if [[ ! -f "${dest_file}" ]]; then
     cp_to "${rucksack_file}" "${dest_file}"
+  fi
+}
+
+function is_pocket_installed() {
+  local pocket="$1"
+
+  grep "^${pocket}$" "${INSTALLED_POCKETS_FILE}" >/dev/null
+  if [[ $? -eq 0 ]]; then echo -n "true"; else echo -n "false"; fi
+}
+
+function add_to_installed_pockets_list() {
+  local pocket="$1"
+
+  log "${pocket}" >> "${INSTALLED_POCKETS_FILE}"
+}
+
+function remove_from_installed_pockets_list() {
+  local pocket="$1"
+
+  sed -i '.bak' "/^${pocket}$/d" "${INSTALLED_POCKETS_FILE}"
+}
+
+function abort_if_pocket_installed {
+  local pocket="$1"
+
+  if [[ $(is_pocket_installed ${pocket}) == "true" ]]; then
+    log "'${pocket}' is already installed; skipping installation."
+    exit 0
+  fi
+}
+
+function abort_if_pocket_not_installed {
+  local pocket="$1"
+
+  if [[ $(is_pocket_installed ${pocket}) == "false" ]]; then
+    log "'${pocket}' is not installed; skipping uninstallation."
+    exit 0
   fi
 }
 
