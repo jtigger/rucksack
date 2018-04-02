@@ -1,4 +1,11 @@
-#/bin/bash
+#!/usr/bin/env bash
+# I first wrote this script back when I was at the Ruby/Rails meetup at Cal
+# Tech.  We were having trouble with their wireless and disabling cert
+# revocation check was the workaround.
+#
+# Turning off this feature means opening yourself up to a MITM attack.
+# Search the web for more details.
+
 case "$1" in 
   on)
     REVOCATION_MODE="BestAttempt"
