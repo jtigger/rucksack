@@ -151,7 +151,14 @@ function abort_if_pocket_not_installed {
 function is_brew_installed() {
   local formula="$1"
 
-  brew list --versions ${formula} >/dev/null 
+  brew list --versions ${formula} >/dev/null 2>&1
+  if [[ $? -eq 0 ]]; then echo -n "true"; else echo -n "false"; fi
+}
+
+function is_brew_cask_installed() {
+  local formula="$1"
+
+  brew cask list --versions ${formula} >/dev/null 2>&1
   if [[ $? -eq 0 ]]; then echo -n "true"; else echo -n "false"; fi
 }
 
@@ -217,7 +224,7 @@ function brew_cask_install() {
   if [[ $( was_installed_by_rucksack ${formula} ) == "true" ]]; then
     add_to_installed_by_rucksack_list "${formula}"
   else
-    if [[ $( is_brew_installed ${formula} ) == "true" ]]; then
+    if [[ $( is_brew_cask_installed ${formula} ) == "true" ]]; then
       log "- ${formula} is already brew-installed; skipping install."
     else
       log "- brew-installing ${formula}"
@@ -231,10 +238,10 @@ function brew_cask_install() {
 function brew_cask_uninstall() {
   local formula="$1"
 
-  if [[ $( is_brew_installed ${formula} ) == "true" ]]; then
+  if [[ $( is_brew_cask_installed ${formula} ) == "true" ]]; then
     if [[ $( was_installed_by_rucksack ${formula} ) == "true" ]]; then
       remove_from_installed_by_rucksack_list "${formula}"
-      if [[ $( was_installed_by_rucksack ${formula} ) == "true" ]]; then
+      if [[ $( was_installed_by_rucksack ${formula} ) == "false" ]]; then
         log "- brew-uninstalling ${formula}"
         brew cask uninstall ${formula} >>"${LOG_FILE}" 2>&1
       else
