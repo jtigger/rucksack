@@ -1,29 +1,49 @@
+#!/usr/bin/env bash
+
 BAK="bak"
 CRUFT="rucksack-cruft"
 STATE_DIR="${HOME}/.rucksack"
-LOG_FILE="${STATE_DIR}/install.log"
-INSTALLED_BREW_FORMULA_FILE="${STATE_DIR}/brew-formula-installed-by-rucksack.txt"
-INSTALLED_POCKETS_FILE="${STATE_DIR}/pockets-installed.txt"
+POCKETS_DIR="${STATE_DIR}/pockets"
+LOG_FILE="${STATE_DIR}/activity.log"
+BREW_FORMULA_INSTALLED_FILE="brew-formula-installed.txt"
 
 # Exit on first error.  Beware: http://mywiki.wooledge.org/BashFAQ/105
 set -e
 
+function assert_brew_installed() {
+  log "verifying brew (and brew cask) are installed..."
+  which brew >/dev/null 2>&1
+  local is_brew_installed=$?
+  if [[ is_brew_installed -eq 0 ]]; then
+    brew tap | grep "caskroom/cask" >/dev/null 2>&1
+    local is_cask_tapped=$?
+    if [[ is_cask_tapped -ne 0 ]]; then
+      log "rucksack requires the 'cask' Homebrew tap.  Please install that tap: https://caskroom.github.io/"
+      exit 1
+    fi
+  else
+    log "rucksack requires Homebrew.  Please install brew: https://brew.sh/"
+    exit 1
+  fi
+}
+
 function init_state() {
   mkdir -p "${STATE_DIR}"
+  mkdir -p "${POCKETS_DIR}"
   touch "${LOG_FILE}"
-  touch "${INSTALLED_BREW_FORMULA_FILE}"
-  touch "${INSTALLED_POCKETS_FILE}"
+
+  assert_brew_installed
 }
 
 function log() {
-  local now="$( date "+%Y-%m-%d@%H:%M:%S" )"
-  echo -e "${now} -- $1" >> ${LOG_FILE}
+  local now="$( date "+%Y-%m-%d @ %H:%M:%S" )"
+  echo -e "${now} : $1" >> ${LOG_FILE}
   echo -e "$1"
 }
 
 function get_link_expr_from_ls() {
   local file="$1"
-  ls -l "${file}" | cut -f 12- -d " " 
+  ls -l "${file}" | cut -f 13- -d " "
 }
 
 function ln_to() {
@@ -102,36 +122,28 @@ function unpack_file() {
 function is_pocket_installed() {
   local pocket="$1"
 
-  grep "^${pocket}$" "${INSTALLED_POCKETS_FILE}" >/dev/null
-  if [[ $? -eq 0 ]]; then echo -n "true"; else echo -n "false"; fi
+  if [[ -d "${POCKETS_DIR}/${pocket}" ]]; then echo -n "true"; else echo -n "false"; fi
 }
 
 function add_to_installed_pockets_list() {
-  local pocket="$1"
-
-  log "${pocket}" >> "${INSTALLED_POCKETS_FILE}"
+  mkdir "${POCKETS_DIR}/${POCKET}"
+  touch "${POCKETS_DIR}/${POCKET}/${BREW_FORMULA_INSTALLED_FILE}"
 }
 
 function remove_from_installed_pockets_list() {
-  local pocket="$1"
-
-  sed -i '.bak' "/^${pocket}$/d" "${INSTALLED_POCKETS_FILE}"
+  rm -rf "${POCKETS_DIR}/${POCKET}"
 }
 
 function abort_if_pocket_installed {
-  local pocket="$1"
-
-  if [[ $(is_pocket_installed ${pocket}) == "true" ]]; then
-    log "'${pocket}' is already installed; skipping installation."
+  if [[ $(is_pocket_installed ${POCKET}) == "true" ]]; then
+    log "'${POCKET}' is already installed; skipping installation."
     exit 0
   fi
 }
 
 function abort_if_pocket_not_installed {
-  local pocket="$1"
-
-  if [[ $(is_pocket_installed ${pocket}) == "false" ]]; then
-    log "'${pocket}' is not installed; skipping uninstallation."
+  if [[ $(is_pocket_installed ${POCKET}) == "false" ]]; then
+    log "'${POCKET}' is not installed; skipping uninstall."
     exit 0
   fi
 }
@@ -146,19 +158,35 @@ function is_brew_installed() {
 function was_installed_by_rucksack() {
   local formula="$1"
 
-  grep "^${formula}$" "${INSTALLED_BREW_FORMULA_FILE}" >/dev/null
+  grep --no-filename "^${formula}$" "${POCKETS_DIR}"/*/"${BREW_FORMULA_INSTALLED_FILE}" >/dev/null
   if [[ $? -eq 0 ]]; then echo -n "true"; else echo -n "false"; fi
+}
+
+function add_to_installed_by_rucksack_list() {
+  local formula="$1"
+
+  echo "${formula}" >> "${POCKETS_DIR}/${POCKET}/${BREW_FORMULA_INSTALLED_FILE}"
+}
+
+function remove_from_installed_by_rucksack_list() {
+  local formula="$1"
+
+  sed -i '.bak' "/^${formula}$/d" "${POCKETS_DIR}/${POCKET}/${BREW_FORMULA_INSTALLED_FILE}"
 }
 
 function brew_install() {
   local formula="$1"
 
-  if [[ $( is_brew_installed ${formula} ) == "true" ]]; then
-    log "- ${formula} is brew-installed; skipping install."
+  if [[ $( was_installed_by_rucksack ${formula} ) == "true" ]]; then
+    add_to_installed_by_rucksack_list "${formula}"
   else
-    log "- brew-installing ${formula}"
-    brew install ${formula} >>"${LOG_FILE}" 2>&1
-    log "${formula}" >> "${INSTALLED_BREW_FORMULA_FILE}"
+    if [[ $( is_brew_installed ${formula} ) == "true" ]]; then
+      log "- ${formula} is already brew-installed; skipping install."
+    else
+      log "- brew-installing ${formula}"
+      brew install ${formula} >>"${LOG_FILE}" 2>&1
+      add_to_installed_by_rucksack_list "${formula}"
+    fi
   fi
 }
 
@@ -167,9 +195,51 @@ function brew_uninstall() {
 
   if [[ $( is_brew_installed ${formula} ) == "true" ]]; then
     if [[ $( was_installed_by_rucksack ${formula} ) == "true" ]]; then
-      log "- brew-uninstalling ${formula}"
-      brew uninstall ${formula} >>"${LOG_FILE}" 2>&1 
-      sed -i '.bak' "/^${formula}$/d" "${INSTALLED_BREW_FORMULA_FILE}"
+      remove_from_installed_by_rucksack_list "${formula}"
+      if [[ $( was_installed_by_rucksack ${formula} ) == "false" ]]; then
+        log "- brew-uninstalling ${formula}"
+        brew uninstall ${formula} >>"${LOG_FILE}" 2>&1 
+      else
+        log "- ${formula} is brew-installed, but it is also required by other pockets; skipping uninstall."
+      fi
+    else
+      log "- ${formula} is brew-installed, but it was not installed by rucksack; skipping uninstall."
+    fi
+  else
+    log "- ${formula} is not brew-installed; skipping uninstall."
+  fi
+}
+
+
+function brew_cask_install() {
+  local formula="$1"
+
+  if [[ $( was_installed_by_rucksack ${formula} ) == "true" ]]; then
+    add_to_installed_by_rucksack_list "${formula}"
+  else
+    if [[ $( is_brew_installed ${formula} ) == "true" ]]; then
+      log "- ${formula} is already brew-installed; skipping install."
+    else
+      log "- brew-installing ${formula}"
+      # handle user input?
+      brew cask install ${formula} >>"${LOG_FILE}" 2>&1
+      add_to_installed_by_rucksack_list "${formula}"
+    fi
+  fi
+}
+
+function brew_cask_uninstall() {
+  local formula="$1"
+
+  if [[ $( is_brew_installed ${formula} ) == "true" ]]; then
+    if [[ $( was_installed_by_rucksack ${formula} ) == "true" ]]; then
+      remove_from_installed_by_rucksack_list "${formula}"
+      if [[ $( was_installed_by_rucksack ${formula} ) == "true" ]]; then
+        log "- brew-uninstalling ${formula}"
+        brew cask uninstall ${formula} >>"${LOG_FILE}" 2>&1
+      else
+        log "- ${formula} is brew-installed, but it is also required by other pockets; skipping uninstall."
+      fi
     else
       log "- ${formula} is brew-installed, but it was not installed by rucksack; skipping uninstall."
     fi

@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
-POCKET_NAME="vim"
+export POCKET="vim"
 
 cd ~
 source rucksack/_core.sh
 
-abort_if_pocket_installed ${POCKET_NAME}
-log "'${POCKET_NAME}' pocket installing..."
+abort_if_pocket_installed
+log "'${POCKET}' pocket installing..."
+add_to_installed_pockets_list
 
 mv_to_bak .vimrc
 ln_to rucksack/vim/.vimrc .
@@ -18,5 +19,4 @@ if [[ ! -f .vim/autoload/plug.vim ]]; then
   cp_to rucksack/vim/autoload/plug.vim .vim/autoload/plug.vim
 fi
 
-add_to_installed_pockets_list ${POCKET_NAME}
 
