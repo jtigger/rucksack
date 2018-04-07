@@ -4,7 +4,6 @@ RUCKSACK_HOME=~/rucksack
 source "$RUCKSACK_HOME/bash/.bashrc/aliases"
 source "$RUCKSACK_HOME/bash/.bashrc/solarize"
 source "$RUCKSACK_HOME/bash/.bashrc/prompt"
-
-export LSCOLORS="exGxfxfxBxfxFxbxbxgxgx"
+source "$RUCKSACK_HOME/bash/.bashrc/lscolors"
 
 export PATH="$PATH:$RUCKSACK_HOME/bin"

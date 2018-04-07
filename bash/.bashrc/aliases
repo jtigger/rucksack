@@ -1,3 +1,17 @@
-alias l='ls -laF'
-alias ll='ls -laF'
+# -F = display characters after non-files.
+# -G = enable colorized output  (set colors with LSCOLORS)
+# -a = all files (even hidden files)
+# -h = use unit suffixes
+# -l = long format
+alias l='ls -FGahl'
+alias ll='ls -FGahl'
+alias lst='ls -FGahlt'
+
+# safer versions of mv and rm
+alias mv='mv -vn'
+alias rm='rm -i'
+alias cp='cp -vn'
+
+# du to display human-readable, by default.
+alias du='du -h'
 

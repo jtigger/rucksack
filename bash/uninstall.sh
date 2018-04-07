@@ -7,6 +7,7 @@ source rucksack/_core.sh
 abort_if_pocket_not_installed
 log "'${POCKET}' pocket uninstalling..."
 
+
 mv_to_cruft .bashrc
 mv_from_bak .bashrc
 

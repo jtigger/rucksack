@@ -1,0 +1,31 @@
+function set_lscolors() {
+  local black=a
+  local red=b
+  local green=c
+  local yellow=d
+  local blue=e
+  local magenta=f
+  local cyan=g
+  local white=h
+
+  local dark_red=B
+  local grey=C
+  local light_grey=E
+  local purple=F
+
+  local directory=${blue}x
+  local link=${light_grey}x
+  local socket=${magenta}x
+  local pipe=${magenta}x
+  local executable=${white}x
+  local block_special=${magenta}x
+  local char_special=${magenta}x
+  local setuid=${red}x
+  local setgid=${red}x
+  local dir_writable_sticky=${yellow}x
+  local dir_writable_nosticky=${yellow}x
+
+  export LSCOLORS=${directory}${link}${socket}${pipe}${executable}${block_special}${char_special}${setuid}${setgid}${dir_writable_sticky}${dir_writable_nosticky}
+}
+
+set_lscolors

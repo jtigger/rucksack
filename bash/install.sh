@@ -13,3 +13,4 @@ brew_install kr
 
 unpack_file rucksack/bash/.bash_profile.example .bash_profile
 unpack_file rucksack/bash/.bashrc.example .bashrc
+
