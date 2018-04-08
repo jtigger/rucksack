@@ -12,3 +12,4 @@ brew_cask_uninstall font-dejavusansmono-nerd-font-mono
 
 remove_from_installed_pockets_list
 
+
