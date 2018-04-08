@@ -46,4 +46,16 @@ function recalc_ps1() {
   export PS1="${SOL_EMPHASIZE}\u${NO_COLOR}@\H:${FULL_PWD}${GIT_STATS}\n\$ "
 }
 
-PROMPT_COMMAND=recalc_ps1
+function invoke_function_is_exists() {
+  local func="$1"
+
+  declare -f $func >/dev/null 2>&1
+  if [[ $? == 0 ]]; then $func ; fi
+}
+
+function update_shell() {
+  invoke_function_is_exists append_last_command_to_history
+  recalc_ps1
+}
+
+PROMPT_COMMAND=update_shell

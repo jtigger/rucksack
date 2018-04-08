@@ -1,0 +1,16 @@
+# append to the .bash_history file instad of replacing when the shell exists.
+shopt -s histappend
+
+# if the exit code of a command is non-zero, prime the prompt with the same command
+shopt -s histreedit
+
+# on history substitution, display command (instead of immediately executing it)
+shopt -s histverify
+
+# used by rucksack "prompt" add-on to ensure shells sync on history
+function append_last_command_to_history() {
+  # append, clear, and re-read history
+  history -a
+  history -c
+  history -r
+}
