@@ -12,6 +12,7 @@ brew_install tree
 brew_install kr
 brew_install jq
 brew_install bash-completion
+brew_install brew-cask-completion
 
 unpack_file rucksack/bash/.bash_profile.example .bash_profile
 unpack_file rucksack/bash/.bashrc.example .bashrc
