@@ -13,6 +13,9 @@ mv_from_bak .bashrc
 mv_to_cruft .bash_profile
 mv_from_bak .bash_profile
 
+rm_link .inputrc
+mv_from_bak .inputrc
+
 brew_uninstall jq
 brew_uninstall kr
 brew_uninstall tree

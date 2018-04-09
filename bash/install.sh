@@ -16,3 +16,6 @@ brew_install bash-completion
 unpack_file rucksack/bash/.bash_profile.example .bash_profile
 unpack_file rucksack/bash/.bashrc.example .bashrc
 
+mv_to_bak .inputrc
+ln_to rucksack/bash/.inputrc .inputrc
+

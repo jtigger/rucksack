@@ -1,0 +1,12 @@
+# use single-tab (instead of the default double-tab) to list completions
+set show-all-if-ambiguous on
+
+# display file suffix-chars (like `ls`'s -F feature)
+set visible-stats on
+
+# ignore case when looking for completions
+set completion-ignore-case on
+
+# command-line uses vi-like keybindings.  Editing begins in "insert" mode.
+set editing-mode vi
+
