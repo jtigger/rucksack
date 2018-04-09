@@ -6,6 +6,7 @@ source "$RUCKSACK_HOME/bash/.bashrc/solarize"
 # source `history` before `prompt` to keep all shell history in-sync.
 source "$RUCKSACK_HOME/bash/.bashrc/history"
 source "$RUCKSACK_HOME/bash/.bashrc/prompt"
+source "$RUCKSACK_HOME/bash/.bashrc/completion"
 source "$RUCKSACK_HOME/bash/.bashrc/lscolors"
 
 export PATH="$PATH:$RUCKSACK_HOME/bin"

@@ -7,9 +7,11 @@ source rucksack/_core.sh
 abort_if_pocket_not_installed
 log "'${POCKET}' pocket uninstalling..."
 
+brew_cask_uninstall intellij-idea
 brew_cask_uninstall font-dejavusansmono-nerd-font-mono
-# brew_cask_uninstall java8
+brew_uninstall gradle-completion
+brew_uninstall gradle
+brew_cask_uninstall java8
 
 remove_from_installed_pockets_list
-
 
