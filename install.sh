@@ -11,3 +11,5 @@ rucksack/bash/install.sh
 rucksack/java/install.sh
 rucksack/javascript/install.sh
 
+print_todos
+

@@ -11,3 +11,5 @@ rucksack/bash/uninstall.sh
 rucksack/vim/uninstall.sh
 rucksack/git/uninstall.sh
 
+print_todos
+

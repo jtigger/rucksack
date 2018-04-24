@@ -5,10 +5,17 @@ CRUFT="rucksack-cruft"
 STATE_DIR="${HOME}/.rucksack"
 POCKETS_DIR="${STATE_DIR}/pockets"
 LOG_FILE="${STATE_DIR}/activity.log"
+TODO_FILE="${STATE_DIR}/post-installation-todos.txt"
 BREW_FORMULA_INSTALLED_FILE="brew-formula-installed.txt"
 
 # Exit on first error.  Beware: http://mywiki.wooledge.org/BashFAQ/105
 set -e
+
+function log() {
+  local now="$( date "+%Y-%m-%d @ %H:%M:%S" )"
+  echo -e "${now} : $1" >> ${LOG_FILE}
+  echo -e "$1"
+}
 
 function assert_brew_installed() {
   log "verifying brew (and brew cask) are installed..."
@@ -30,15 +37,24 @@ function assert_brew_installed() {
 function init_state() {
   mkdir -p "${STATE_DIR}"
   mkdir -p "${POCKETS_DIR}"
+  rm -f "${TODO_FILE}"
+  touch "${TODO_FILE}"
   touch "${LOG_FILE}"
 
   assert_brew_installed
 }
 
-function log() {
-  local now="$( date "+%Y-%m-%d @ %H:%M:%S" )"
-  echo -e "${now} : $1" >> ${LOG_FILE}
-  echo -e "$1"
+function add_todo() {
+  local item="$1"
+
+  echo -e "${item}" >> "${TODO_FILE}"
+}
+
+function print_todos() {
+  local todos=$( cat "${TODO_FILE}" )
+
+  log "TO-DO:"
+  log "${todos}"
 }
 
 function get_link_expr_from_ls() {
@@ -254,3 +270,4 @@ function brew_cask_uninstall() {
     log "- ${formula} is not brew-installed; skipping uninstall."
   fi
 }
+

@@ -14,4 +14,5 @@ brew_install gradle-completion
 brew_cask_install font-dejavusansmono-nerd-font-mono
 brew_cask_install intellij-idea
 
+add_todo "Sync IntelliJ settings:\n  0. Help -> Register\n  1. File > Sync Settings to JetBrains Account... [Get Settings from Account]\n"
 
