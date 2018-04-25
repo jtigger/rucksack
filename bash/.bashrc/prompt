@@ -4,16 +4,23 @@ function is_in_git_repo() {
   echo $?
 }
 
-function recalc_git_stats() {
-  local shortstat="$( git diff --shortstat )"  # Ex: 10 files changed, 58 insertions(+), 1293 deletions(-)
-  _p_WRK_DIFF_FILES=$( echo $shortstat | awk '{print $1}' )
-  _p_WRK_DIFF_ADDS=$( echo $shortstat | grep --only-matching "\d\+ insertion" | awk '{print $1}' )
-  _p_WRK_DIFF_DELS=$( echo $shortstat | grep --only-matching "\d\+ deletion" | awk '{print $1}' )
+function diff_stats_from_shortstat() {
+  local shortstat="$1"  # output from git diff --shortstat e.g. "10 files changed, 58 insertions(+), 1293 deletions(-)"
+  local diff_stats=()
+  diff_stats+=( $( echo $shortstat | awk '{print $1}' ) )
+  diff_stats+=( $( echo $shortstat | grep --only-matching "\d\+ insertion" | awk '{print $1}' ) )
+  diff_stats+=( $( echo $shortstat | grep --only-matching "\d\+ deletion" | awk '{print $1}' ) )
 
-  local shortstat="$( git diff --shortstat --staged )"  # Ex: 10 files changed, 58 insertions(+), 1293 deletions(-)
-  _p_STG_DIFF_FILES=$( echo $shortstat | awk '{print $1}' )
-  _p_STG_DIFF_ADDS=$( echo $shortstat | grep --only-matching "\d\+ insertion" | awk '{print $1}' )
-  _p_STG_DIFF_DELS=$( echo $shortstat | grep --only-matching "\d\+ deletion" | awk '{print $1}' )
+  echo -n "${diff_stats[*]}"
+}
+
+function recalc_git_stats() {
+
+  local shortstat="$( git diff --shortstat )"  
+  _p_WRK_DIFF=( $( diff_stats_from_shortstat "${shortstat}" ) )
+
+  local shortstat="$( git diff --shortstat --staged )"
+  _p_STG_DIFF=( $( diff_stats_from_shortstat "${shortstat}" ) )
 
   # git-status-porcelain Ex:
     # branch.oid 2db58365bbc718762d0cbc189a1eb90e47334f09
@@ -27,22 +34,24 @@ function recalc_git_stats() {
   _p_BRANCH_BEHIND=$( git status --porcelain=2 --branch  | grep "branch.ab" | awk '{ print $4 }' )
 }
 
+function render_diff() {
+  local diff_stats=("$@")  # [0] = num files in diff; [1] = num of insertions; [2] = num of deletions
+
+  if [[ "${diff_stats[0]}" != "" ]]; then
+    echo -n "${SOL_YELLOW}Δ${diff_stats[0]}${NO_COLOR}(${SOL_GREEN}+${diff_stats[1]} ${SOL_RED}-${diff_stats[2]}${NO_COLOR})"
+  else
+    echo -n "-"
+  fi
+}
+
 function recalc_ps1() {
   if [[ $(is_in_git_repo) -eq "0" ]]; then
     recalc_git_stats
     GIT_STATS=" :: ${SOL_YELLOW}${_p_BRANCH_REF}${NO_COLOR}"
     if [[ ${_p_BRANCH_REF} != "(detached)" ]]; then
       local branch="${SOL_YELLOW}(${SOL_EMPHASIZE}${_p_BRANCH_NAME}${SOL_YELLOW})${NO_COLOR} ${SOL_YELLOW}(${SOL_RED}${_p_BRANCH_UPSTREAM}${NO_COLOR} ${SOL_CYAN}${_p_BRANCH_AHEAD} ${SOL_MAGENTA}${_p_BRANCH_BEHIND}${SOL_YELLOW})${NO_COLOR}"
-      if [[ "${_p_WRK_DIFF_FILES}" != "" ]]; then
-        local wrk="${SOL_YELLOW}Δ${_p_WRK_DIFF_FILES}${NO_COLOR}(${SOL_GREEN}+${_p_WRK_DIFF_ADDS} ${SOL_RED}-${_p_WRK_DIFF_DELS}${NO_COLOR})"
-      else
-        local wrk="-"
-      fi
-      if [[ "${_p_STG_DIFF_FILES}" != "" ]]; then
-        local stg="${SOL_YELLOW}Δ${_p_STG_DIFF_FILES}${NO_COLOR}(${SOL_GREEN}+${_p_STG_DIFF_ADDS} ${SOL_RED}-${_p_STG_DIFF_DELS}${NO_COLOR})"
-      else
-        local stg="-"
-      fi
+      local wrk="$( render_diff ${_p_WRK_DIFF[@]} )"
+      local stg="$( render_diff ${_p_STG_DIFF[@]} )"
       GIT_STATS="${GIT_STATS} ${branch} wrk:${wrk} stg:${stg}"
     else
       GIT_STATS=" :: ${_p_BRANCH_NAME}"
