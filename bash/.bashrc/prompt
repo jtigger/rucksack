@@ -20,11 +20,11 @@ function recalc_git_stats() {
     # branch.head master
     # branch.upstream origin/master
     # branch.ab +1 -0
-  _p_BRANCH_REF=$(  git status --porcelain=2 --branch | grep "branch.oid" | awk '{ print $3 }' | cut -c1-7 )
-  _p_BRANCH_NAME=$(  git status --porcelain=2 --branch  | grep "branch.head" | awk '{ print $3 }' )
-  _p_BRANCH_UPSTREAM=$(  git status --porcelain=2 --branch  | grep "branch.upstream" | awk '{ print $3 }' )
-  _p_BRANCH_AHEAD=$(  git status --porcelain=2 --branch  | grep "branch.ab" | awk '{ print $3 }' )
-  _p_BRANCH_BEHIND=$(  git status --porcelain=2 --branch  | grep "branch.ab" | awk '{ print $4 }' )
+  _p_BRANCH_REF=$( git status --porcelain=2 --branch | grep "branch.oid" | awk '{ print $3 }' | cut -c1-7 )
+  _p_BRANCH_NAME=$( git status --porcelain=2 --branch  | grep "branch.head" | awk '{ print $3 }' )
+  _p_BRANCH_UPSTREAM=$( git status --porcelain=2 --branch  | grep "branch.upstream" | awk '{ print $3 }' )
+  _p_BRANCH_AHEAD=$( git status --porcelain=2 --branch  | grep "branch.ab" | awk '{ print $3 }' )
+  _p_BRANCH_BEHIND=$( git status --porcelain=2 --branch  | grep "branch.ab" | awk '{ print $4 }' )
 }
 
 function recalc_ps1() {
@@ -32,7 +32,7 @@ function recalc_ps1() {
     recalc_git_stats
     GIT_STATS=" :: ${SOL_YELLOW}${_p_BRANCH_REF}${NO_COLOR}"
     if [[ ${_p_BRANCH_REF} != "(detached)" ]]; then
-      local branch="${SOL_YELLOW}(${SOL_EMPHASIZE}${_p_BRANCH_NAME}${SOL_YELLOW})${NO_COLOR} ${SOL_YELLOW}(${SOL_RED}${_p_BRANCH_UPSTREAM}${NO_COLOR} ${SOL_CYAN}${_p_BRANCH_AHEAD} ${SOL_MAGENTA}${_p_BRANCH_BEHIND} ${SOL_YELLOW})${NO_COLOR}"
+      local branch="${SOL_YELLOW}(${SOL_EMPHASIZE}${_p_BRANCH_NAME}${SOL_YELLOW})${NO_COLOR} ${SOL_YELLOW}(${SOL_RED}${_p_BRANCH_UPSTREAM}${NO_COLOR} ${SOL_CYAN}${_p_BRANCH_AHEAD} ${SOL_MAGENTA}${_p_BRANCH_BEHIND}${SOL_YELLOW})${NO_COLOR}"
       if [[ "${_p_WRK_DIFF_FILES}" != "" ]]; then
         local wrk="${SOL_YELLOW}Δ${_p_WRK_DIFF_FILES}${NO_COLOR}(${SOL_GREEN}+${_p_WRK_DIFF_ADDS} ${SOL_RED}-${_p_WRK_DIFF_DELS}${NO_COLOR})"
       else
