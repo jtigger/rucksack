@@ -15,12 +15,17 @@ function diff_stats_from_shortstat() {
 }
 
 function recalc_git_stats() {
-
   local shortstat="$( git diff --shortstat )"  
   _p_WRK_DIFF=( $( diff_stats_from_shortstat "${shortstat}" ) )
 
   local shortstat="$( git diff --shortstat --staged )"
   _p_STG_DIFF=( $( diff_stats_from_shortstat "${shortstat}" ) )
+
+  _p_STASH_DIFFS=""
+  stash_shortstats=$( git stash list --shortstat | egrep "[:digit:]* files? changed" )
+  IFS=$'\n'; for shortstat in $stash_shortstats ; do
+    _p_STASH_DIFFS+="'($( diff_stats_from_shortstat ${shortstat} ))' "
+  done; unset IFS
 
   # git-status-porcelain Ex:
     # branch.oid 2db58365bbc718762d0cbc189a1eb90e47334f09
