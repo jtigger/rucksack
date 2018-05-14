@@ -9,4 +9,6 @@ source "$RUCKSACK_HOME/bash/.bashrc/prompt"
 source "$RUCKSACK_HOME/bash/.bashrc/completion"
 source "$RUCKSACK_HOME/bash/.bashrc/lscolors"
 
+source "$RUCKSACK_HOME/golang/.bashrc"
+
 export PATH="$PATH:$RUCKSACK_HOME/bin"
