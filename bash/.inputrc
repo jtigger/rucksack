@@ -7,6 +7,3 @@ set visible-stats on
 # ignore case when looking for completions
 set completion-ignore-case on
 
-# command-line uses vi-like keybindings.  Editing begins in "insert" mode.
-set editing-mode vi
-
