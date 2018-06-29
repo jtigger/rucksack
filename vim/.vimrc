@@ -25,3 +25,6 @@ set softtabstop=2  " how many spaces a <Tab> feels like when hitting <Tab> or <B
 set expandtab      " convert tabs to spaces
 
 set cindent        " use the most 'clever' OOTB autoindenting strategy {autoindent, smartindent, cindent, indentexpr}
+
+"==- Go Vim
+let g:go_fmt_command = "goimports"
