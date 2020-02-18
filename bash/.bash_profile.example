@@ -1,1 +1,7 @@
-source ~/.bashrc
+if [[ -e "$HOME/.bashrc" ]]; then
+  source "$HOME/.bashrc"
+else
+  echo "Expected $HOME/.bashrc to be present, but was not found.  Expect a degraded experience."
+fi
+
+export INPUTRC="$HOME/.inputrc"

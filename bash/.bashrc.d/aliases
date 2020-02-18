@@ -15,9 +15,3 @@ alias cp='cp -vn'
 # du to display human-readable, by default.
 alias du='du -h'
 
-# command quick-helps
-
-function treeh() {
-  echo "tree -ifa -- unindented; full, relative paths; including all files/dirs (even hidden)"
-  echo "tree -CF -- color; special-char suffix (like ls)"
-}
