@@ -8,7 +8,10 @@ tap "kryptco/tap"
 # ===- Essentials -===
 brew "bash"
 brew "bash-completion"
+brew "bat"
 brew "brew-cask-completion"
+brew "fd"
+brew "fzf"
 brew "git"
 brew "kryptco/tap/kr"
 brew "tldr"
@@ -32,9 +35,6 @@ cask "tor-browser"
 # Go
 brew "go"
 cask "goland"
-
-# Haskell
-cask "haskell-platform"
 
 # JSON
 brew "jq"

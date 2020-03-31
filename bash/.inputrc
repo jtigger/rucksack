@@ -1,3 +1,4 @@
+# https://www.gnu.org/software/bash/manual/html_node/Readline-Init-File-Syntax.html
 # use single-tab (instead of the default double-tab) to list completions
 set show-all-if-ambiguous on
 
@@ -7,3 +8,8 @@ set visible-stats on
 # ignore case when looking for completions
 set completion-ignore-case on
 
+
+# https://www.gnu.org/software/bash/manual/html_node/Commands-For-History.html
+# 
+"\e[A": history-search-backward            # arrow up
+"\e[B": history-search-forward             # arrow down

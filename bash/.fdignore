@@ -1,0 +1,7 @@
+# common OS X application files (not useful from command-line)
+Applications/
+Library/
+Movies/
+Music/
+Pictures/
+

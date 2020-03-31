@@ -16,6 +16,7 @@ Plug 'airblade/vim-gitgutter'            " git-diffs in the gutter
 Plug 'scrooloose/nerdtree'               " NERD tree
 Plug 'dense-analysis/ale'                " ALE : linting
 Plug 'fatih/vim-go'                      " Go development
+Plug '/usr/local/opt/fzf'                " Fuzzy matcher (installed via brew)
 "Plug 'scrooloose/syntastic'              " syntax highlighting
 
 call plug#end()
@@ -41,6 +42,8 @@ set cindent        " use the most 'clever' OOTB autoindenting strategy {autoinde
 
 "=========================================================================
 " Plugin Configuration (alphabetical)
+
+"==- fzf 
 
 "==- nerdtree
 let NERDTreeShowHidden=1

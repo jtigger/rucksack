@@ -2,6 +2,7 @@
   lol = log --graph --oneline --decorate=short
   lola = log --graph --oneline --all --decorate=short
   ci = commit
+  co = checkout
 
 [color]
   status = auto
