@@ -40,10 +40,13 @@ set expandtab      " convert tabs to spaces
 
 set cindent        " use the most 'clever' OOTB autoindenting strategy {autoindent, smartindent, cindent, indentexpr}
 
+set directory=/tmp// " put swap files in /tmp -- they are ephemeral; don't liter the workspace.
+
 "=========================================================================
 " Plugin Configuration (alphabetical)
 
 "==- fzf 
+"  https://github.com/junegunn/fzf/blob/master/README-VIM.md
 
 "==- nerdtree
 let NERDTreeShowHidden=1

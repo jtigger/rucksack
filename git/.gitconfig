@@ -18,6 +18,7 @@
   # APFS is, by default, case-insensitive; avoid nasty case-difference situations...
   ignoreCase = true
   editor = vim
+  excludesfile = ~/.gitignore
 
 [include]
   path = .gitconfig-grep

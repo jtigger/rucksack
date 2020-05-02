@@ -19,6 +19,7 @@ brew "tree"
 
 brew "tmux"
 cask "iterm2"
+cask "ngrok"
 cask "rectangle"
 
 cask "1password"
@@ -46,5 +47,17 @@ brew "k14s/tap/ytt"
 # ===- VMs/Containers -===
 brew "derailed/k9s/k9s"
 brew "hyperkit"
+brew "kind"
 brew "minikube"
+brew "k14s/tap/kapp"
 
+
+# ===- Project-Specific -===
+
+# -- Kubernetes
+brew "gnu-tar"
+
+
+# ===- Work-Support -===
+#
+cask "miro-formerly-realtimeboard"
