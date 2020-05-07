@@ -1,6 +1,6 @@
 # ===- Core taps -===
-tap "derailed/k9s"
 tap "homebrew/cask"
+tap "homebrew/cask-versions"
 tap "homebrew/core"
 tap "k14s/tap"
 tap "kryptco/tap"
@@ -16,6 +16,7 @@ brew "git"
 brew "kryptco/tap/kr"
 brew "tldr"
 brew "tree"
+brew "watch"
 
 brew "tmux"
 cask "iterm2"
@@ -37,6 +38,12 @@ cask "tor-browser"
 brew "go"
 cask "goland"
 
+# Java   (see https://stackoverflow.com/a/32811065)
+# brew "java"                                # Java13
+# brew "java11"                              # Java11
+# cask "adoptopenjdk/openjdk/adoptopenjdk8"  # Java8
+# cask "intellij"
+
 # JSON
 brew "jq"
 
@@ -45,16 +52,20 @@ brew "k14s/tap/ytt"
 
 
 # ===- VMs/Containers -===
-brew "derailed/k9s/k9s"
-brew "hyperkit"
 brew "kind"
+
+brew "hyperkit"
 brew "minikube"
+
 brew "k14s/tap/kapp"
 
 
 # ===- Project-Specific -===
 
 # -- Kubernetes
+tap "derailed/k9s"
+brew "derailed/k9s/k9s"
+
 brew "gnu-tar"
 
 
