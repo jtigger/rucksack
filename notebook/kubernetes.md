@@ -1,4 +1,10 @@
 
+# Deploying/Running
+
+- a "STATUS" in `k get pods` output is a _phase_ name, not really a status.
+  - `RUNNING` simply means that the containers have been created.
+
+
 # Networking
 
 - Pods are assigned an IP address in the "cluster network"

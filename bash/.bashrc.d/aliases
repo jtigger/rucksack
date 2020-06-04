@@ -3,6 +3,7 @@
 # -a = all files (even hidden files)
 # -h = use unit suffixes
 # -l = long format
+# -t = sort by date/time modified
 alias l='ls -FGahl'
 alias ll='ls -FGahl'
 alias lst='ls -FGahlt'
@@ -15,3 +16,4 @@ alias cp='cp -vn'
 # du to display human-readable, by default.
 alias du='du -h'
 
+alias git=git-together

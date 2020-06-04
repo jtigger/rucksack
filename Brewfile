@@ -34,6 +34,9 @@ cask "tor-browser"
 
 # ===- Dev Tools -===
 
+# git-together
+brew "pivotal/tap/git-together"
+
 # Go
 brew "go"
 cask "goland"
@@ -43,6 +46,9 @@ cask "goland"
 # brew "java11"                              # Java11
 # cask "adoptopenjdk/openjdk/adoptopenjdk8"  # Java8
 # cask "intellij"
+
+# ===- JavaScript -===
+brew "npm"
 
 # JSON
 brew "jq"
@@ -67,7 +73,6 @@ tap "derailed/k9s"
 brew "derailed/k9s/k9s"
 
 brew "gnu-tar"
-
 
 # ===- Work-Support -===
 #
