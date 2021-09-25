@@ -37,6 +37,9 @@ cask "tor-browser"
 # git-together
 brew "pivotal/tap/git-together"
 
+# Github Command-Line Tooling
+brew "gh"
+
 # Go
 brew "go"
 cask "goland"
@@ -59,10 +62,7 @@ brew "k14s/tap/ytt"
 
 # ===- VMs/Containers -===
 brew "kind"
-
-brew "hyperkit"
 brew "minikube"
-
 brew "k14s/tap/kapp"
 
 
@@ -73,6 +73,12 @@ tap "derailed/k9s"
 brew "derailed/k9s/k9s"
 
 brew "gnu-tar"
+
+
+# ===- Image Tools -===
+brew "imagemagick"   # swissarmy image manipulation tool
+brew "potrace"       # rendering SVG from bitmaps
+cask "inkscape"      # GUI for potrace
 
 # ===- Work-Support -===
 #

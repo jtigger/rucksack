@@ -22,6 +22,7 @@
 
 [include]
   path = .gitconfig-grep
+	path = ~/.git-together
 
 [push]
   default = simple
@@ -31,6 +32,13 @@
   showStash = true
 
 [user]
-  name = John S. Ryan
-  email = jtigger@infosysengr.com
+	name = John Ryan
+	email = jtigger@infosysengr.com
 
+[git-together]
+	aliases = ci
+	active = jr
+
+[git-together "user"]
+	name = John S. Ryan
+	email = jtigger@infosysengr.com

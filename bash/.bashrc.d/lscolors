@@ -17,7 +17,7 @@ function set_lscolors() {
   local link=${light_grey}x
   local socket=${magenta}x
   local pipe=${magenta}x
-  local executable=${white}x
+  local executable=${red}x
   local block_special=${magenta}x
   local char_special=${magenta}x
   local setuid=${red}x

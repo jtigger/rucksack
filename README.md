@@ -16,5 +16,5 @@ Workstation setup essentials.
    ```bash
    $ ( cd ~/rucksack && brew bundle )
    ```
-
-1. "Pouches" within the rucksack are each in their own directory.  To install a "pouch", follow the `README.md`.
+   
+1. For each "pocket" you want to install, follow the instructions in the `README.md`

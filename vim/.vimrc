@@ -17,7 +17,9 @@ Plug 'scrooloose/nerdtree'               " NERD tree
 Plug 'dense-analysis/ale'                " ALE : linting
 Plug 'fatih/vim-go'                      " Go development
 Plug '/usr/local/opt/fzf'                " Fuzzy matcher (installed via brew)
-"Plug 'scrooloose/syntastic'              " syntax highlighting
+Plug 'cappyzawa/starlark.vim'            " syntax highlighting  (required by ytt.vim)
+Plug 'cappyzawa/ytt.vim'                 " syntax highlighting
+"Plug 'scrooloose/syntastic'             " syntax highlighting
 
 call plug#end()
 
@@ -28,7 +30,7 @@ set nocompatible   " compatible disables a bunch of vim features; ensure it is o
 
 "==- Appearance
 syntax enable
-set background=dark
+set background=light
 colorscheme solarized
 set number
 

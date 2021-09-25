@@ -16,4 +16,11 @@ alias cp='cp -vn'
 # du to display human-readable, by default.
 alias du='du -h'
 
+## App-specific short-hands
+alias yat='bat --language yaml'
 alias git=git-together
+alias gitwith="git with --clear; git with --global"
+alias k=kubectl
+alias yttt=$HOME/workspace/k14s/ytt/ytt
+alias kbldd=$HOME/workspace/k14s/kbld/kbld
+alias imgpkgg=$HOME/workspace/k14s/imgpkg/imgpkg

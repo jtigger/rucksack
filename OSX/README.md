@@ -7,13 +7,31 @@
     - [x] Use Spotlight metadata for searching contacts  _(searches on more fields than name)_
 - System Preferences:
   - Keyboard > Shortcuts 
-    - Mission Control = [Shift+Crtl+Alt+Cmd]+Up        # GoLand: "Previous Method"
-    - Application windows = [Shift+Crtl+Alt+Cmd]+Down  # GoLand: "Next Method" 
-    - Move left a space = [Shift+Crtl+Alt+Cmd]+Left
-    - Move right a space = [Shift+Crtl+Alt+Cmd]+Right
-    - Show Desktop = [Shift+Crtl+Alt+Cmd]+F11
+    - Mission Control = [Shift+Crtl+Opt+Cmd]+Up        # GoLand: "Previous Method"
+    - Application windows = [Shift+Crtl+Opt+Cmd]+Down  # GoLand: "Next Method" 
+    - Notification Center = [Shift+Opt+Cmd]+Left
+    - Show Desktop = [Shift+Crtl+Opt+Cmd]+F11
+- iTerm2
+  - Preferences > Profiles > Text
+    - Cursor 
+      - (o) Underline
+      - [x] Blinking Cursor
+    - Font
+      - Font = "Source Code Pro"      # (see install location, below)
+      - v|i = 90                      # fit more text while being readable
+      - [x] Use ligatures             # allows for nicer looking characters (at some speed cost I haven't noticed)
+      - [x] Anti-aliased              # smoother font rendering for easier reading
+  - Preferences > Profiles > Colors
+      - Color Preset: "Solarized Light"
+      - Cursor Colors:
+        - Cursor: (bright green)      # to make it easier to find cursor while in YAML files (or other that use dashes)
 
-      
 ## Additional Tools to Install
 
 - [ ] Docker Desktop for Mac
+
+## Others
+
+- Source Pro Font : https://github.com/adobe-fonts/source-code-pro/releases/tag/variable-fonts
+  - select for iTerm2 Profile
+  - (comes with JetBrains IDEs)
