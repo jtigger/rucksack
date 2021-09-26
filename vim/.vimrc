@@ -12,6 +12,7 @@ call plug#begin('~/.vim/rucksack-plugged')
 Plug 'tpope/vim-sensible'                " defaults that everyone can agree on.
 Plug 'altercation/vim-colors-solarized'  " my favorite color scheme
 Plug 'vim-airline/vim-airline'           " status line
+Plug 'vim-airline/vim-airline-themes'    " + themes
 Plug 'airblade/vim-gitgutter'            " git-diffs in the gutter
 Plug 'scrooloose/nerdtree'               " NERD tree
 Plug 'dense-analysis/ale'                " ALE : linting
@@ -55,6 +56,7 @@ let NERDTreeShowHidden=1
 
 "==- vim-airline
 let g:airline#extensions#ale#enabled = 1
+let g:airline_theme="solarized"
 
 "==- vim-go
 let g:go_fmt_command = "goimports"
