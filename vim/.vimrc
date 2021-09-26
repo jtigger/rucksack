@@ -10,17 +10,18 @@ call plug#begin('~/.vim/rucksack-plugged')
 
 "  plugin library: https://vimawesome.com
 Plug 'tpope/vim-sensible'                " defaults that everyone can agree on.
+
 Plug 'altercation/vim-colors-solarized'  " my favorite color scheme
 Plug 'vim-airline/vim-airline'           " status line
 Plug 'vim-airline/vim-airline-themes'    " + themes
 Plug 'airblade/vim-gitgutter'            " git-diffs in the gutter
-Plug 'scrooloose/nerdtree'               " NERD tree
-Plug 'dense-analysis/ale'                " ALE : linting
-Plug 'fatih/vim-go'                      " Go development
+
 Plug '/usr/local/opt/fzf'                " Fuzzy matcher (installed via brew)
 Plug 'cappyzawa/starlark.vim'            " syntax highlighting  (required by ytt.vim)
 Plug 'cappyzawa/ytt.vim'                 " syntax highlighting
-"Plug 'scrooloose/syntastic'             " syntax highlighting
+
+Plug 'dense-analysis/ale'                " ALE : linting
+Plug 'fatih/vim-go'                      " Go development
 
 call plug#end()
 
@@ -51,12 +52,11 @@ set directory=/tmp// " put swap files in /tmp -- they are ephemeral; don't liter
 "==- fzf
 "  https://github.com/junegunn/fzf/blob/master/README-VIM.md
 
-"==- nerdtree
-let NERDTreeShowHidden=1
-
 "==- vim-airline
-let g:airline#extensions#ale#enabled = 1
 let g:airline_theme="solarized"
+let g:airline_solarized_bg="dark"
+
+let g:airline#extensions#ale#enabled = 1
 
 "==- vim-go
 let g:go_fmt_command = "goimports"
