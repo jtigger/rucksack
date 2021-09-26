@@ -3,13 +3,14 @@
 ## common settings for scripts
 
 ```bash
+set -o errexit -o nounset -o pipefile
+set -o xtrace
+```
+shortened:
+```bash
 set -e -u -o pipefail
 set -x
 ```
-- e : exit on err
-- u : err when unset variables are used (catches typos)
-- pipefail : propagate errors that occur in piped commands
-- x : turn on tracing: every command is display before executed
 
 ## location of the currently running script
 
