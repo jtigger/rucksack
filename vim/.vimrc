@@ -48,7 +48,7 @@ set directory=/tmp// " put swap files in /tmp -- they are ephemeral; don't liter
 "=========================================================================
 " Plugin Configuration (alphabetical)
 
-"==- fzf 
+"==- fzf
 "  https://github.com/junegunn/fzf/blob/master/README-VIM.md
 
 "==- nerdtree
