@@ -7,6 +7,7 @@ source "$HOME/rucksack/bash/.bashrc.d/history"
 source "$HOME/rucksack/bash/.bashrc.d/prompt"
 source "$HOME/rucksack/bash/.bashrc.d/completion"
 source "$HOME/rucksack/bash/.bashrc.d/lscolors"
+source "$HOME/rucksack/bash/.bashrc.d/fzf"
 
 source "$HOME/rucksack/golang/.bashrc"
 
@@ -14,15 +15,6 @@ export BAT_THEME="Solarized (light)"
 
 export PATH="$PATH:$HOME/rucksack/bin"
 export PATH="$PATH:$HOME/workspace/k14s/bin"
-
-# https://mike.place/2017/fzf-fd/
-FIND_ALL_ITEMS_IN_HOME="fd"
-FIND_ALL_DIRS_IN_HOME="fd --type d"
-export FZF_DEFAULT_COMMAND="$FIND_ALL_ITEMS_IN_HOME"
-export FZF_CTRL_T_COMMAND="$FIND_ALL_ITEMS_IN_HOME"
-export FZF_ALT_C_COMMAND="$FIND_ALL_DIRS_IN_HOME"
-
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 # Wasmer
 export WASMER_DIR="/Users/jtigger/.wasmer"

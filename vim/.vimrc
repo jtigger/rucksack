@@ -17,6 +17,8 @@ Plug 'vim-airline/vim-airline-themes'    " + themes
 Plug 'airblade/vim-gitgutter'            " git-diffs in the gutter
 
 Plug '/usr/local/opt/fzf'                " Fuzzy matcher (installed via brew)
+Plug 'junegunn/fzf.vim'                  " + vim command and mappings for FZF
+
 Plug 'cappyzawa/starlark.vim'            " syntax highlighting  (required by ytt.vim)
 Plug 'cappyzawa/ytt.vim'                 " syntax highlighting
 
@@ -29,6 +31,7 @@ call plug#end()
 
 "==- baseline
 set nocompatible   " compatible disables a bunch of vim features; ensure it is off.
+set modelines=5    " restore default lines searched for '# vim ...'  (cleared by a plugin?)
 
 "==- Appearance
 syntax enable
@@ -44,13 +47,21 @@ set expandtab      " convert tabs to spaces
 
 set cindent        " use the most 'clever' OOTB autoindenting strategy {autoindent, smartindent, cindent, indentexpr}
 
-set directory=/tmp// " put swap files in /tmp -- they are ephemeral; don't liter the workspace.
+set directory=/tmp/ " put swap files in /tmp -- they are ephemeral; don't liter the workspace.
 
 "=========================================================================
 " Plugin Configuration (alphabetical)
 
 "==- fzf
 "  https://github.com/junegunn/fzf/blob/master/README-VIM.md
+
+"==- fzf.vim
+"  https://github.com/junegunn/fzf.vim
+
+
+"==- netrw
+let g:netrw_liststyle = 3    " [thin,long,wide,tree]; i = toggles
+let g:netrw_banner = 0       " I = toggles
 
 "==- vim-airline
 let g:airline_theme="solarized"

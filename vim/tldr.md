@@ -23,6 +23,10 @@ Ctrl+W...
 - H,J,K,L -- filling half of the window
 - T -- to a new tab
 
+## netrw
+
+- % -- create new file
+
 ## Useful References
 
 - Version ... and status of settings.
