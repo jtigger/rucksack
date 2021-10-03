@@ -1,4 +1,6 @@
 
+## Install
+
 ```console
 cd ~
 mkdir -p .vim/autoload
