@@ -17,7 +17,7 @@ alias cp='cp -vn'
 alias du='du -h'
 
 ## App-specific short-hands
-alias yat='bat --language yaml'
+alias baty='bat --language yaml'
 alias git=git-together
 alias gitwith="git with --clear; git with --global"
 alias k=kubectl

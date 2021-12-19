@@ -18,11 +18,14 @@ Plug 'airblade/vim-gitgutter'            " git-diffs in the gutter
 
 Plug '/usr/local/opt/fzf'                " Fuzzy matcher (installed via brew)
 Plug 'junegunn/fzf.vim'                  " + vim command and mappings for FZF
+Plug 'mg979/vim-visual-multi'            " Multi-cursor (ctrl+n)
+Plug 'tpope/vim-surround'                " Change surrounding tokens (cs, ds, ys)
 
 Plug 'cappyzawa/starlark.vim'            " syntax highlighting  (required by ytt.vim)
 Plug 'cappyzawa/ytt.vim'                 " syntax highlighting
 
 Plug 'dense-analysis/ale'                " ALE : linting
+Plug 'tpope/vim-commentary'              " Toggle comments
 Plug 'fatih/vim-go'                      " Go development
 
 call plug#end()
@@ -38,6 +41,8 @@ syntax enable
 set background=light
 colorscheme solarized
 set number
+set incsearch
+set scrolloff=5    " keep cursor away from edge while scrolling
 
 "==- Indentation
 set tabstop=2      " how many spaces a tab character is converted to when inserted.

@@ -42,6 +42,7 @@ brew "gh"
 
 # Go
 brew "go"
+brew "golangci-lint"
 cask "goland"
 
 # Java   (see https://stackoverflow.com/a/32811065)
