@@ -1,3 +1,19 @@
 " IdeaVim-specific config: https://github.com/JetBrains/ideavim
+
+" enables plugin _emulation_ when known plugins are present
 source ~/.vimrc
 
+# vim-multiple-cursors is deprecated; enable emulation explicitly
+set multiple-cursors
+
+
+" Remap multiple-cursors shortcuts to match terryma/vim-multiple-cursors
+" src: https://stackoverflow.com/a/65430514/1190801
+nmap <C-n> <Plug>NextWholeOccurrence
+xmap <C-n> <Plug>NextWholeOccurrence
+nmap g<C-n> <Plug>NextOccurrence
+xmap g<C-n> <Plug>NextOccurrence
+nmap <C-x> <Plug>SkipOccurrence
+xmap <C-x> <Plug>SkipOccurrence
+nmap <C-p> <Plug>RemoveOccurrence
+xmap <C-p> <Plug>RemoveOccurrence
