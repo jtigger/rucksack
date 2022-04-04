@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 set -euf -o pipefail
-set -x
+#set -x
 
 if [[ $# -eq 0 ]]; then
   echo "Usage:"

@@ -76,3 +76,7 @@ let g:airline#extensions#ale#enabled = 1
 
 "==- vim-go
 let g:go_fmt_command = "goimports"
+
+"==- ytt-vim
+" Disabled because this should only run when editing a YAML file...
+"autocmd VimEnter * EnableYtt

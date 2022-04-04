@@ -3,7 +3,7 @@
 ## common settings for scripts
 
 ```bash
-set -o errexit -o nounset -o pipefile
+set -o errexit -o nounset -o pipefail
 set -o xtrace
 ```
 shortened:

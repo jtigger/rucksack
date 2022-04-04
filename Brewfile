@@ -2,8 +2,6 @@
 tap "homebrew/cask"
 tap "homebrew/cask-versions"
 tap "homebrew/core"
-tap "k14s/tap"
-tap "kryptco/tap"
 
 # ===- Essentials -===
 brew "bash"
@@ -13,7 +11,6 @@ brew "brew-cask-completion"
 brew "fd"
 brew "fzf"
 brew "git"
-brew "kryptco/tap/kr"
 brew "tldr"
 brew "tree"
 brew "watch"
@@ -32,6 +29,20 @@ cask "google-chrome"
 cask "tor-browser"
 
 
+# ===- VMs/Containers -===
+tap "vmware-tanzu/carvel"
+
+brew "hyperkit"          # required by podman
+brew "podman"
+
+# Kubernetes
+# tap "derailed/k9s"
+# brew "kind"
+# brew "minikube"
+# brew "kapp"
+# brew "derailed/k9s/k9s"
+
+
 # ===- Dev Tools -===
 
 # git-together
@@ -41,7 +52,7 @@ brew "pivotal/tap/git-together"
 brew "gh"
 
 # Go
-brew "go"
+brew "go@1.17"
 brew "golangci-lint"
 cask "goland"
 
@@ -52,26 +63,16 @@ cask "goland"
 # cask "intellij"
 
 # ===- JavaScript -===
-brew "npm"
+#brew "npm"
 
 # JSON
 brew "jq"
 
 # YAML
-brew "k14s/tap/ytt"
-
-
-# ===- VMs/Containers -===
-brew "kind"
-brew "minikube"
-brew "k14s/tap/kapp"
+brew "ytt"
 
 
 # ===- Project-Specific -===
-
-# -- Kubernetes
-tap "derailed/k9s"
-brew "derailed/k9s/k9s"
 
 brew "gnu-tar"
 
@@ -81,6 +82,3 @@ brew "imagemagick"   # swissarmy image manipulation tool
 brew "potrace"       # rendering SVG from bitmaps
 cask "inkscape"      # GUI for potrace
 
-# ===- Work-Support -===
-#
-cask "miro-formerly-realtimeboard"
