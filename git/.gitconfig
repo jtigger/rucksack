@@ -33,7 +33,7 @@
 
 [user]
 	name = John Ryan
-	email = jtigger@infosysengr.com
+	email = jtigger@pm.me
 
 [git-together]
 	aliases = ci
@@ -41,4 +41,4 @@
 
 [git-together "user"]
 	name = John S. Ryan
-	email = jtigger@infosysengr.com
+	email = jtigger@pm.me
