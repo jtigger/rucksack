@@ -1,4 +1,6 @@
 
+## Install
+
 ## Manual Configuration Tweaks
 
 - In Alfred:
@@ -16,6 +18,10 @@
     - Cursor 
       - (o) Underline
       - [x] Blinking Cursor
+    - Text Rendering
+      - [x] Draw bold text in bold font
+      - [x] Italic text               # (202208131312.md)
+      
     - Font
       - Font = "Source Code Pro"      # (see install location, below)
       - v|i = 90                      # fit more text while being readable

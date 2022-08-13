@@ -8,9 +8,11 @@
     ln -s rucksack/bash/.bashrc .
     ln -s rucksack/bash/.fdignore .
     ln -s rucksack/bash/.inputrc .
+    ln -s rucksack/bash/.terminfo .
     mkdir -p $( dirname $( bat --config-file ) )
     ln -s rucksack/bash/.bat-config $( bat --config-file ) 
     ```
+
 1. (after `brew bundle`) Install fuzzy matcher's keybindings and completions:
 
     ```bash

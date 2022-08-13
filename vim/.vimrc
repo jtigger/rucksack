@@ -30,30 +30,6 @@ Plug 'fatih/vim-go'                      " Go development
 
 call plug#end()
 
-"----
-
-"==- baseline
-set nocompatible   " compatible disables a bunch of vim features; ensure it is off.
-set modelines=5    " restore default lines searched for '# vim ...'  (cleared by a plugin?)
-
-"==- Appearance
-syntax enable
-set background=light
-colorscheme solarized
-set number
-set incsearch
-set scrolloff=5    " keep cursor away from edge while scrolling
-
-"==- Indentation
-set tabstop=2      " how many spaces a tab character is converted to when inserted.
-set shiftwidth=2   " how many spaces each >> indents.
-set softtabstop=2  " how many spaces a <Tab> feels like when hitting <Tab> or <BS>
-set expandtab      " convert tabs to spaces
-
-set cindent        " use the most 'clever' OOTB autoindenting strategy {autoindent, smartindent, cindent, indentexpr}
-
-set directory=/tmp/ " put swap files in /tmp -- they are ephemeral; don't liter the workspace.
-
 "=========================================================================
 " Plugin Configuration (alphabetical)
 
@@ -74,9 +50,39 @@ let g:airline_solarized_bg="dark"
 
 let g:airline#extensions#ale#enabled = 1
 
+"==- vim-colors-solarized
+let g:solarized_italic = 1
+
 "==- vim-go
 let g:go_fmt_command = "goimports"
 
 "==- ytt-vim
 " Disabled because this should only run when editing a YAML file...
 "autocmd VimEnter * EnableYtt
+
+"=========================================================================
+" vim Config
+"    (keep after plugin config so plugins can modify features)
+
+"==- baseline
+set nocompatible   " compatible disables a bunch of vim features; ensure it is off.
+set modelines=5    " restore default lines searched for '# vim ...'  (cleared by a plugin?)
+
+"==- Appearance
+syntax enable
+set background=light
+colorscheme solarized
+set number
+set incsearch      " show searching incrementally (as you type)
+set hlsearch       " highlight all search matches
+set scrolloff=5    " keep cursor away from edge while scrolling
+
+"==- Indentation
+set tabstop=2      " how many spaces a tab character is converted to when inserted.
+set shiftwidth=2   " how many spaces each >> indents.
+set softtabstop=2  " how many spaces a <Tab> feels like when hitting <Tab> or <BS>
+set expandtab      " convert tabs to spaces
+
+set cindent        " use the most 'clever' OOTB autoindenting strategy {autoindent, smartindent, cindent, indentexpr}
+
+set directory=/tmp/ " put swap files in /tmp -- they are ephemeral; don't liter the workspace.
