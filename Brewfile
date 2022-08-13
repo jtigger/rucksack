@@ -21,12 +21,14 @@ cask "ngrok"
 cask "rectangle"
 
 cask "1password"
+cask "1password/tap/1password-cli"
 cask "signal"
 
 # Browsers
 cask "firefox"
 cask "google-chrome"
 cask "tor-browser"
+brew "defaultbrowser"    # ref: Alfred Workflow
 
 
 # ===- VMs/Containers -===
