@@ -72,6 +72,10 @@ set modelines=5    " restore default lines searched for '# vim ...'  (cleared by
 syntax enable
 set background=light
 colorscheme solarized
+" invisible chars
+set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,eol:¶,precedes:«,extends:»
+highlight SpecialKey ctermfg=14 ctermbg=15 guifg=LightCyan
+
 set number
 set incsearch      " show searching incrementally (as you type)
 set hlsearch       " highlight all search matches
