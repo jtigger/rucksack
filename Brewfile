@@ -38,6 +38,9 @@ tap "vmware-tanzu/carvel"
 brew "hyperkit"          # required by podman
 brew "podman"
 
+# Image Building
+# brew "buildpacks/tap/pack"    # one of the builders to can configure with kbld
+
 # Kubernetes
 # tap "derailed/k9s"
 # brew "kind"
