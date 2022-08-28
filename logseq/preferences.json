@@ -1,0 +1,15 @@
+{
+  "theme": null,
+  "themes": {
+    "mode": "light",
+    "light": {
+      "name": "Solarized Extended Light Theme",
+      "url": "lsp://logseq.io/logseq-solarized-extended-theme/dist/assets/solExtTheme.css",
+      "description": "Light solarized Logseq theme with extra stuff",
+      "mode": "light",
+      "pid": "logseq-solarized-extended-theme"
+    },
+    "dark": null
+  },
+  "externals": []
+}

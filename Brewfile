@@ -23,6 +23,7 @@ cask "rectangle"
 cask "1password"
 cask "1password/tap/1password-cli"
 cask "signal"
+cask "logseq"
 
 # Browsers
 cask "firefox"
