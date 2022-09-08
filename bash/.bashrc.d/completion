@@ -1,3 +1,6 @@
+# Completions that are not managed by brew:
+op completion bash >$(brew --prefix)/etc/bash_completion.d/op
+
 if [[ -f $(brew --prefix)/etc/bash_completion ]]; then
   source $(brew --prefix)/etc/bash_completion
 fi
