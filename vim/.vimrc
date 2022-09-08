@@ -70,7 +70,7 @@ set modelines=5    " restore default lines searched for '# vim ...'  (cleared by
 
 "==- Appearance
 syntax enable
-set background=light
+set background=dark
 colorscheme solarized
 " invisible chars
 set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,eol:¶,precedes:«,extends:»
