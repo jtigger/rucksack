@@ -2,6 +2,7 @@
 tap "homebrew/cask"
 tap "homebrew/cask-versions"
 tap "homebrew/core"
+tap "pivotal/tap"
 
 # ===- Essentials -===
 brew "bash"
@@ -22,12 +23,13 @@ cask "rectangle"
 
 cask "1password"
 cask "1password/tap/1password-cli"
+cask "alfred"            # current = v5
 # cask "signal"
 cask "logseq"
 
 # Browsers
-cask "firefox"
-cask "google-chrome"
+# cask "firefox"
+# cask "google-chrome"
 #cask "tor-browser"
 brew "defaultbrowser"    # ref: Alfred Workflow
 
