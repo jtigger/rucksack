@@ -18,6 +18,6 @@ alias du='du -h'
 
 ## App-specific short-hands
 alias baty='bat --language yaml'
-alias git=git-together
+# alias git=git-together
 alias gitwith="git with --clear; git with --global"
 alias k=kubectl
