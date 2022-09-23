@@ -23,5 +23,5 @@ For each identity/SSH Key to configure:
      IdentitiesOnly yes
      IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
    ```
-
+4. from 1Password, copy signing configuration put signing configuration in `~/.gitconfig-sign`
 

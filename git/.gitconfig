@@ -21,8 +21,9 @@
   excludesfile = ~/.gitignore
 
 [include]
-  path = .gitconfig-grep
 	path = ~/.git-together
+  path = ~/.gitconfig-grep
+  path = ~/.gitconfig-sign
 
 [push]
   default = simple
@@ -31,14 +32,3 @@
   ; include anything that's been stashed in `git status`
   showStash = true
 
-[user]
-	name = John Ryan
-	email = jtigger@pm.me
-
-[git-together]
-	aliases = ci
-	active = jr
-
-[git-together "user"]
-	name = John S. Ryan
-	email = jtigger@pm.me
