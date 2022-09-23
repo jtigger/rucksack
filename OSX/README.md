@@ -31,6 +31,8 @@
       - Color Preset: "Solarized Light"
       - Cursor Colors:
         - Cursor: (bright green)      # to make it easier to find cursor while in YAML files (or other that use dashes)
+  - Preferences > Profiles > Keys
+      - Left Option Key (o) Esc+
 
 ## Additional Tools to Install
 
