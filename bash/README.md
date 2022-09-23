@@ -16,8 +16,9 @@
 1. (after `brew bundle`) Install fuzzy matcher's keybindings and completions:
 
     ```bash
-    /usr/local/opt/fzf/install
+    $(brew --prefix)/opt/fzf/install
     ```
+    - do _not_ update shell files, fzf config is already included
 
 # Details
 

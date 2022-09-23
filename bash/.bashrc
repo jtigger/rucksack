@@ -1,4 +1,9 @@
 export BASH_SILENCE_DEPRECATION_WARNING=1
+if [[ $(arch) == "i386" ]]; then
+  eval "$(/usr/local/bin/brew shellenv)"
+else
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
 
 # baseline: project-independent tooling
 source "$HOME/rucksack/bash/.bashrc.d/aliases"
@@ -21,3 +26,5 @@ export PATH="$PATH:$HOME/workspace/k14s/bin"
 # Wasmer
 export WASMER_DIR="/Users/jtigger/.wasmer"
 [ -s "$WASMER_DIR/wasmer.sh" ] && source "$WASMER_DIR/wasmer.sh"
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
