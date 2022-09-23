@@ -1,4 +1,9 @@
 
+function is_dark_mode() {
+  defaults read -g AppleInterfaceStyle >/dev/null 2>&1
+  echo $?
+}
+
 function is_in_git_repo() {
   git status >/dev/null 2>&1
   echo $?
