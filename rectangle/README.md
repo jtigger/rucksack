@@ -1,0 +1,3 @@
+## Installation
+
+- import `./RectangleConfig.json`
