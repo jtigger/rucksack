@@ -2,13 +2,13 @@
 tap "homebrew/cask"
 tap "homebrew/cask-versions"
 tap "homebrew/core"
-tap "pivotal/tap"
 
 # ===- Essentials -===
 brew "bash"
 brew "bash-completion"
 brew "bat"
 brew "brew-cask-completion"
+brew "colordiff"
 brew "fd"
 brew "fzf"
 brew "git"
@@ -30,41 +30,38 @@ cask "logseq"
 # Browsers
 # cask "firefox"
 # cask "google-chrome"
-#cask "tor-browser"
+# cask "tor-browser"
 brew "defaultbrowser"    # ref: Alfred Workflow
 
 
-# ===- VMs/Containers -===
-tap "vmware-tanzu/carvel"
 
-brew "hyperkit"          # required by podman
-brew "podman"
+# ===- Container Runtimes -===
+# > Podman
+# brew "hyperkit"          # required by podman
+# brew "podman"
 
-# Image Building
-# brew "buildpacks/tap/pack"    # one of the builders to can configure with kbld
+# > Rancher Desktop
+cask "rancher"
 
-# Kubernetes
-# tap "derailed/k9s"
-# brew "kind"
+# ===- Kubernetes Distro -===
+brew "kind"
 # brew "minikube"
-# brew "kapp"
-# brew "derailed/k9s/k9s"
 
 
-# ===- Dev Tools -===
-
-# git-together
+# ===- Common Development Tooling -===
+tap "pivotal/tap"
 brew "pivotal/tap/git-together"
+brew "gh"   # GitHub CLI
 
-# Github Command-Line Tooling
-brew "gh"
+# ===- Go -===
 
-# Go
-brew "go@1.17"
+# brew "go@1.17" # prior versions
+brew "go"
 brew "golangci-lint"
 cask "goland"
 
-# Java   (see https://stackoverflow.com/a/32811065)
+# ===- Java -===
+# (see https://stackoverflow.com/a/32811065)
 # brew "java"                                # Java13
 # brew "java11"                              # Java11
 # cask "adoptopenjdk/openjdk/adoptopenjdk8"  # Java8
@@ -78,15 +75,25 @@ brew "jq"
 
 # YAML
 brew "ytt"
+brew "yq"
+
+# ===- Kubernetes Tooling -===
+tap "vmware-tanzu/carvel"
+# tap "derailed/k9s"
+# brew "k9s"
+
+brew "kapp"
+# brew "kwt"
+
+# ===- Image Building -===
+# brew "buildpacks/tap/pack"    # one of the builders to can configure with kbld
 
 
-# ===- Project-Specific -===
-
-brew "gnu-tar"
-
-
-# ===- Image Tools -===
+# ===- Graphics Tools -===
 # brew "imagemagick"   # swissarmy image manipulation tool
 # brew "potrace"       # rendering SVG from bitmaps
 # cask "inkscape"      # GUI for potrace
 
+
+# ===- Project-Specific -===
+# brew "gnu-tar"

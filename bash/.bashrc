@@ -18,10 +18,9 @@ export PATH="$PATH:$HOME/rucksack/bin"
 
 source "$HOME/rucksack/golang/.bashrc"
 source "$HOME/rucksack/carvel/.bashrc"
+source "$HOME/rucksack/rancher-desktop/.bashrc"
 
-export BAT_THEME="Solarized (light)"
-
-export PATH="$PATH:$HOME/workspace/k14s/bin"
+export BAT_THEME="Solarized (dark)"
 
 # Wasmer
 export WASMER_DIR="/Users/jtigger/.wasmer"
