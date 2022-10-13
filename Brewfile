@@ -2,6 +2,7 @@
 tap "homebrew/cask"
 tap "homebrew/cask-versions"
 tap "homebrew/core"
+tap "vmware-tanzu/carvel"
 
 # ===- Essentials -===
 brew "bash"
@@ -15,6 +16,7 @@ brew "git"
 brew "tldr"
 brew "tree"
 brew "watch"
+brew "vmware-tanzu/carvel/vendir"
 
 brew "tmux"
 cask "iterm2"
@@ -74,15 +76,14 @@ cask "goland"
 brew "jq"
 
 # YAML
-brew "ytt"
+brew "vmware-tanzu/carvel/ytt"
 brew "yq"
 
 # ===- Kubernetes Tooling -===
-tap "vmware-tanzu/carvel"
 # tap "derailed/k9s"
 # brew "k9s"
 
-brew "kapp"
+brew "vmware-tanzu/carvel/kapp"
 # brew "kwt"
 
 # ===- Image Building -===
