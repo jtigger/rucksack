@@ -92,6 +92,7 @@ brew "vmware-tanzu/carvel/kapp"
 
 # ===- Graphics Tools -===
 # brew "imagemagick"   # swissarmy image manipulation tool
+# cask "gimp"
 # brew "potrace"       # rendering SVG from bitmaps
 # cask "inkscape"      # GUI for potrace
 
