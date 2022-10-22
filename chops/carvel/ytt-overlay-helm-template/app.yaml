@@ -1,0 +1,39 @@
+#! Demonstrates that the output of a "template" step
+#! is the input into the next step.
+#!
+#! Here, by default nginx chart creates a LoadBalancer
+#! which on a dev cluster will hang waiting for an IP
+#! Our patch downgrades it to a NodePort
+#! The fact that this App successfully deploys
+#! (and that the resulting service is of type "NodePort"
+#! shows how the overlay was applied.
+apiVersion: kappctrl.k14s.io/v1alpha1
+kind: App
+metadata:
+  name: dev-namespaces-app
+  namespace: ytt-overlays-helm
+spec:
+  deploy:
+    - kapp: {}
+  fetch:
+    - helmChart:
+        name: nginx
+        repository:
+          url: https://charts.bitnami.com/bitnami
+        version: 13.2.10
+  serviceAccountName: ytt-overlays-helm
+  syncPeriod: 10m0s
+  template:
+    - helmTemplate: {}
+    - ytt:
+        paths:
+          - '-'
+        inline:
+          paths:
+            overlay.yaml: |
+              #@ load("@ytt:overlay", "overlay")
+              
+              #@overlay/match by=overlay.subset({"kind": "Service", "metadata": {"name": "dev-namespaces-app-nginx"}})
+              ---
+              spec:
+                type: NodePort 
