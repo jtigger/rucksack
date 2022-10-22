@@ -32,3 +32,5 @@
   ; include anything that's been stashed in `git status`
   showStash = true
 
+[init]
+	defaultBranch = main
