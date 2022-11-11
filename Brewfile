@@ -10,6 +10,7 @@ brew "bash-completion"
 brew "bat"
 brew "brew-cask-completion"
 brew "colordiff"
+brew "entr"
 brew "fd"
 brew "fzf"
 brew "git"
@@ -88,6 +89,7 @@ brew "vmware-tanzu/carvel/kapp"
 
 # ===- Image Building -===
 # brew "buildpacks/tap/pack"    # one of the builders to can configure with kbld
+brew "ko"   # images from Go apps
 
 
 # ===- Graphics Tools -===
