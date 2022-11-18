@@ -3,6 +3,7 @@ tap "homebrew/cask"
 tap "homebrew/cask-versions"
 tap "homebrew/core"
 tap "vmware-tanzu/carvel"
+tap "teamookla/speedtest"
 
 # ===- Essentials -===
 brew "bash"
@@ -17,7 +18,6 @@ brew "git"
 brew "tldr"
 brew "tree"
 brew "watch"
-brew "vmware-tanzu/carvel/vendir"
 
 brew "tmux"
 cask "iterm2"
@@ -29,6 +29,10 @@ cask "1password/tap/1password-cli"
 cask "alfred"            # current = v5
 # cask "signal"
 cask "logseq"
+
+# ===- Nice-to-haves -===
+brew "vmware-tanzu/carvel/vendir"
+brew "speedtest"
 
 # Browsers
 # cask "firefox"
