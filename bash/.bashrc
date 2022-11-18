@@ -21,6 +21,7 @@ source "$HOME/rucksack/carvel/.bashrc"
 source "$HOME/rucksack/rancher-desktop/.bashrc"
 
 export BAT_THEME="Solarized (dark)"
+export BAT_PAGER="less --no-init --RAW-CONTROL-CHARS --quit-if-one-screen"
 
 # Wasmer
 export WASMER_DIR="/Users/jtigger/.wasmer"
