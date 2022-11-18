@@ -36,6 +36,9 @@ cask "logseq"
 # cask "tor-browser"
 brew "defaultbrowser"    # ref: Alfred Workflow
 
+# ===- Encryption -===
+brew "sops"
+brew "age"
 
 
 # ===- Container Runtimes -===
