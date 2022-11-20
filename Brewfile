@@ -63,12 +63,21 @@ tap "pivotal/tap"
 brew "pivotal/tap/git-together"
 brew "gh"   # GitHub CLI
 
-# ===- Go -===
 
-# brew "go@1.17" # prior versions
+# ===- Text File Processing -===
+brew "htmlq" # HTML
+brew "jq"    # JSON
+
+# YAML
+brew "vmware-tanzu/carvel/ytt"
+brew "yq"
+
+
+# ===- Go -===
 brew "go"
 brew "golangci-lint"
 cask "goland"
+# brew "go@1.17" # prior versions
 
 # ===- Java -===
 # (see https://stackoverflow.com/a/32811065)
@@ -80,12 +89,6 @@ cask "goland"
 # ===- JavaScript -===
 #brew "npm"
 
-# JSON
-brew "jq"
-
-# YAML
-brew "vmware-tanzu/carvel/ytt"
-brew "yq"
 
 # ===- Kubernetes Tooling -===
 # tap "derailed/k9s"
