@@ -1,0 +1,93 @@
+CRT_DARK=${SOL_MAGENTA}
+CRT_FADED=${SOL_CYAN}
+CRT_NORMAL=${SOL_EMPHASIZE}
+CRT_BRIGHT=${NO_COLOR}
+
+
+function is_dark_mode() {
+  defaults read -g AppleInterfaceStyle >/dev/null 2>&1
+  echo $?
+}
+
+function is_in_git_repo() {
+  git status >/dev/null 2>&1
+  echo $?
+}
+
+function diff_stats_from_shortstat() {
+  local shortstat="$1"  # output from git diff --shortstat e.g. "10 files changed, 58 insertions(+), 1293 deletions(-)"
+  local diff_stats=()
+  diff_stats+=( $( echo $shortstat | awk '{print $1}' ) )
+  diff_stats+=( $( echo $shortstat | grep --only-matching "\d\+ insertion" | awk '{print $1}' ) )
+  diff_stats+=( $( echo $shortstat | grep --only-matching "\d\+ deletion" | awk '{print $1}' ) )
+
+  echo -n "${diff_stats[*]}"
+}
+
+function recalc_git_stats() {
+  local shortstat="$( git diff --shortstat )"  
+  _p_WRK_DIFF=( $( diff_stats_from_shortstat "${shortstat}" ) )
+
+  local shortstat="$( git diff --shortstat --staged )"
+  _p_STG_DIFF=( $( diff_stats_from_shortstat "${shortstat}" ) )
+
+  _p_STASH_DIFFS=""
+  stash_shortstats=$( git stash list --shortstat | egrep "[:digit:]* files? changed" )
+  IFS=$'\n'; for shortstat in $stash_shortstats ; do
+    _p_STASH_DIFFS+="'($( diff_stats_from_shortstat ${shortstat} ))' "
+  done; unset IFS
+
+  # git-status-porcelain Ex:
+    # branch.oid 2db58365bbc718762d0cbc189a1eb90e47334f09
+    # branch.head master
+    # branch.upstream origin/master
+    # branch.ab +1 -0
+  _p_BRANCH_REF=$( git status --porcelain=2 --branch | grep "branch.oid" | awk '{ print $3 }' | cut -c1-7 )
+  _p_BRANCH_NAME=$( git status --porcelain=2 --branch  | grep "branch.head" | awk '{ print $3 }' )
+  _p_BRANCH_UPSTREAM=$( git status --porcelain=2 --branch  | grep "branch.upstream" | awk '{ print $3 }' )
+  _p_BRANCH_AHEAD=$( git status --porcelain=2 --branch  | grep "branch.ab" | awk '{ print $3 }' )
+  _p_BRANCH_BEHIND=$( git status --porcelain=2 --branch  | grep "branch.ab" | awk '{ print $4 }' )
+}
+
+function render_diff() {
+  local diff_stats=("$@")  # [0] = num files in diff; [1] = num of insertions; [2] = num of deletions
+
+  if [[ "${diff_stats[0]}" != "" ]]; then
+    echo -n "${CRT_BRIGHT}Δ${diff_stats[0]}${CRT_DARK}(${CRT_FADED}+${diff_stats[1]} ${CRT_NORMAL}-${diff_stats[2]}${CRT_DARK})"
+  else
+    echo -n "-"
+  fi
+}
+
+function recalc_ps1() {
+  if [[ $(is_in_git_repo) -eq "0" ]]; then
+    recalc_git_stats
+    GIT_STATS="\n  ${CRT_FADED}${_p_BRANCH_REF}${NO_COLOR}"
+    if [[ ${_p_BRANCH_REF} != "(detached)" ]]; then
+      local branch="${CRT_DARK}(${CRT_NORMAL}${_p_BRANCH_NAME}${CRT_DARK})${NO_COLOR} ${CRT_DARK}(${CRT_NORMAL}${_p_BRANCH_UPSTREAM}${NO_COLOR} ${_p_BRANCH_AHEAD} ${_p_BRANCH_BEHIND}${CRT_DARK})${NO_COLOR}"
+      local wrk="$( render_diff ${_p_WRK_DIFF[@]} )"
+      local stg="$( render_diff ${_p_STG_DIFF[@]} )"
+      GIT_STATS="${GIT_STATS} ${branch} ${CRT_DARK}wrk:${CRT_NORMAL}${wrk} ${CRT_DARK}stg:${CRT_NORMAL}${stg}"
+    else
+      GIT_STATS="\n  ${_p_BRANCH_NAME}"
+    fi
+  else
+    GIT_STATS=""
+  fi
+  FULL_PWD="${CRT_BRIGHT}${PWD}${NO_COLOR}"
+  export PS1="${CRT_FADED}\u${CRT_DARK}@${CRT_FADED}\H${CRT_DARK}:${FULL_PWD}${GIT_STATS}\n${CRT_BRIGHT}\$ "
+}
+
+function invoke_function_is_exists() {
+  local func="$1"
+
+  declare -f $func >/dev/null 2>&1
+  if [[ $? == 0 ]]; then $func ; fi
+}
+
+function update_shell() {
+  invoke_function_is_exists append_last_command_to_history
+  recalc_ps1
+}
+
+PROMPT_COMMAND=update_shell

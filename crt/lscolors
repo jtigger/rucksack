@@ -1,0 +1,23 @@
+function set_lscolors() {
+  local black=a
+  local dark=b
+  local faded=c
+  local normal=d
+  local bright=g
+
+  local directory=${faded}x
+  local link=${dark}x
+  local socket=${dark}x
+  local pipe=${dark}x
+  local executable=${normal}x
+  local block_special=${dark}x
+  local char_special=${dark}x
+  local setuid=${black}${normal}
+  local setgid=${black}${normal}
+  local dir_writable_sticky=${black}${faded}
+  local dir_writable_nosticky=${black}${dark}
+
+  export LSCOLORS=${directory}${link}${socket}${pipe}${executable}${block_special}${char_special}${setuid}${setgid}${dir_writable_sticky}${dir_writable_nosticky}
+}
+
+set_lscolors
