@@ -90,6 +90,9 @@ cask "goland"
 #brew "npm"
 
 
+# ===- Network Diagnostics -===
+cask "zenmap"        # nmap and friends
+
 # ===- Kubernetes Tooling -===
 # tap "derailed/k9s"
 # brew "k9s"
