@@ -56,4 +56,7 @@ export FZF_ALT_C_OPTS="--preview 'tree -L 1 -C {} | head -200'"
 export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || bat --color=always {} || tree -C {}) 2> /dev/null | head -200'"
 export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
 
+export FZF_DEFAULT_COMMAND="fd --hidden --type f --exclude .git"
+export FZF_CTRL_T_COMMAND="${FZF_DEFAULT_COMMAND}"
+
 source ~/.fzf.bash
