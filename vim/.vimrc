@@ -16,31 +16,19 @@ Plug 'vim-airline/vim-airline'           " status line
 Plug 'vim-airline/vim-airline-themes'    " + themes
 Plug 'airblade/vim-gitgutter'            " git-diffs in the gutter
 
-Plug '/usr/local/opt/fzf'                " Fuzzy matcher (installed via brew)
-Plug 'junegunn/fzf.vim'                  " + vim command and mappings for FZF
 Plug 'mg979/vim-visual-multi'            " Multi-cursor (ctrl+n)
 Plug 'tpope/vim-surround'                " Change surrounding tokens (cs, ds, ys)
 
-Plug 'cappyzawa/starlark.vim'            " syntax highlighting  (required by ytt.vim)
-Plug 'cappyzawa/ytt.vim'                 " syntax highlighting
-
 Plug 'dense-analysis/ale'                " ALE : linting
 Plug 'tpope/vim-commentary'              " Toggle comments
-Plug 'fatih/vim-go'                      " Go development
 
 call plug#end()
 
 "=========================================================================
 " Plugin Configuration (alphabetical)
 
-"==- fzf
-"  https://github.com/junegunn/fzf/blob/master/README-VIM.md
-
-"==- fzf.vim
-"  https://github.com/junegunn/fzf.vim
-
-
 "==- netrw
+let g:netrw_keepdir = 0      " keep netrw's pwd in sync with vim's pwd
 let g:netrw_liststyle = 3    " [thin,long,wide,tree]; i = toggles
 let g:netrw_banner = 0       " I = toggles
 
@@ -52,13 +40,6 @@ let g:airline#extensions#ale#enabled = 1
 
 "==- vim-colors-solarized
 let g:solarized_italic = 1
-
-"==- vim-go
-let g:go_fmt_command = "goimports"
-
-"==- ytt-vim
-" Disabled because this should only run when editing a YAML file...
-"autocmd VimEnter * EnableYtt
 
 "=========================================================================
 " vim Config
