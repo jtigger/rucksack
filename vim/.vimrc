@@ -24,6 +24,13 @@ Plug 'tpope/vim-commentary'              " Toggle comments
 
 call plug#end()
 
+if empty($VIM_BACKGROUND)
+  " light | dark
+  let g:background="dark"
+else
+  let g:background=$VIM_BACKGROUND
+endif
+
 "=========================================================================
 " Plugin Configuration (alphabetical)
 
@@ -39,7 +46,7 @@ nmap <Tab> <Plug>NetrwShrink
 
 "==- vim-airline
 let g:airline_theme="solarized"
-let g:airline_solarized_bg="dark"
+let g:airline_solarized_bg=g:background
 
 let g:airline#extensions#ale#enabled = 1
 
@@ -56,7 +63,7 @@ set modelines=5    " restore default lines searched for '# vim ...'  (cleared by
 
 "==- Appearance
 syntax enable
-set background=dark
+let &background=g:background  " equiv to `set background=(setting of g:background)`
 colorscheme solarized
 " invisible chars
 set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,eol:¶,precedes:«,extends:»
