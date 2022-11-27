@@ -73,10 +73,12 @@ colorscheme solarized
 set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,eol:¶,precedes:«,extends:»
 highlight SpecialKey ctermfg=14 ctermbg=15 guifg=LightCyan
 
-set number
-set incsearch      " show searching incrementally (as you type)
-set hlsearch       " highlight all search matches
-set scrolloff=5    " keep cursor away from edge while scrolling
+set number          " show line numbers
+set incsearch       " show searching incrementally (as you type)
+set hlsearch        " highlight all search matches
+                    " <esc> clears search highlights
+nmap <esc> :noh<cr>
+set scrolloff=5     " keep cursor away from edge while scrolling
 
 "==- Indentation
 set tabstop=2      " how many spaces a tab character is converted to when inserted.
