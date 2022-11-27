@@ -36,8 +36,10 @@ endif
 
 "==- netrw
 let g:netrw_banner = 0       " I = toggles
+let g:netrw_browse_split = 4 " <cr> will open file in previous window
 let g:netrw_keepdir = 0      " keep netrw's pwd in sync with vim's pwd
 let g:netrw_liststyle = 3    " [thin,long,wide,tree]; i = toggles
+let g:netrw_preview = 1      " preview window shown in vertical split
 let g:netrw_usetab = 1       " define the <Plug>NetrwShrink mapping
 let g:netrw_winsize = 30     " size of browser window (as %)
 
@@ -49,6 +51,8 @@ let g:airline_theme="solarized"
 let g:airline_solarized_bg=g:background
 
 let g:airline#extensions#ale#enabled = 1
+let g:airline#extensions#ale#error_symbol = '💣:'
+let g:airline#extensions#ale#warning_symbol = '⚠️:'
 
 "==- vim-colors-solarized
 let g:solarized_italic = 1
