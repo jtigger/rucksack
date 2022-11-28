@@ -265,15 +265,15 @@
 	<key>Cursor Guide Color</key>
 	<dict>
 		<key>Alpha Component</key>
-		<real>0.10000000000000001</real>
+		<real>0.054901960784314002</real>
 		<key>Blue Component</key>
-		<real>1</real>
+		<real>0.59346467256546021</real>
 		<key>Color Space</key>
 		<string>sRGB</string>
 		<key>Green Component</key>
-		<real>0.92681378126144409</real>
+		<real>0.63295060396194458</real>
 		<key>Red Component</key>
-		<real>0.70214027166366577</real>
+		<real>0.16010180115699768</real>
 	</dict>
 	<key>Cursor Text Color</key>
 	<dict>
