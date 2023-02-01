@@ -80,6 +80,9 @@ brew "golangci-lint"
 cask "goland"
 # brew "go@1.17" # prior versions
 
+# ===- Elixir -===
+brew "elixir"
+
 # ===- Java -===
 # (see https://stackoverflow.com/a/32811065)
 # brew "java"                                # Java13
