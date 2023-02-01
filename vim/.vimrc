@@ -54,6 +54,8 @@ let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#ale#error_symbol = '💣:'
 let g:airline#extensions#ale#warning_symbol = '⚠️:'
 
+let g:airline#extensions#branch#enabled = 1
+
 "==- vim-colors-solarized
 let g:solarized_italic = 1
 
