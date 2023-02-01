@@ -36,7 +36,10 @@
 
 ## Additional Tools to Install
 
-- [ ] Docker Desktop for Mac
+Install OSX Command-Line tools to enable remote debugging of processes (e.g. from within GoLand)
+```console
+$ xcode-select --install
+```
 
 ## Others
 
