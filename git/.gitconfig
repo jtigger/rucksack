@@ -34,3 +34,6 @@
 
 [init]
 	defaultBranch = main
+[user]
+	email = jtigger@pm.me
+	name = John Ryan
