@@ -4,6 +4,7 @@ tap "homebrew/cask-versions"
 tap "homebrew/core"
 tap "vmware-tanzu/carvel"
 tap "teamookla/speedtest"
+tap "aquasecurity/trivy"
 
 # ===- Essentials -===
 brew "bash"
@@ -94,8 +95,7 @@ cask "goland"
 cask "zenmap"        # nmap and friends
 
 # ===- Kubernetes Tooling -===
-# tap "derailed/k9s"
-# brew "k9s"
+brew "k9s"
 
 brew "vmware-tanzu/carvel/kapp"
 # brew "kwt"
@@ -103,6 +103,7 @@ brew "vmware-tanzu/carvel/kapp"
 # ===- Image Building -===
 # brew "buildpacks/tap/pack"    # one of the builders to can configure with kbld
 brew "ko"   # images from Go apps
+brew "trivy"
 
 
 # ===- Graphics Tools -===
@@ -114,3 +115,7 @@ brew "ko"   # images from Go apps
 
 # ===- Project-Specific -===
 # brew "gnu-tar"
+
+# ===- Cloud Providers -===
+tap "weaveworks/tap"
+brew "eksctl"
