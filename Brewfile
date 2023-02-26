@@ -85,13 +85,14 @@ brew "elixir"
 
 # ===- Java -===
 # (see https://stackoverflow.com/a/32811065)
-# brew "java"                                # Java13
+brew "java"                                  # Lastest (OpenJDK)
 # brew "java11"                              # Java11
 # cask "adoptopenjdk/openjdk/adoptopenjdk8"  # Java8
 # cask "intellij"
 
 # ===- JavaScript -===
 #brew "npm"
+brew "node"
 
 
 # ===- Network Diagnostics -===
