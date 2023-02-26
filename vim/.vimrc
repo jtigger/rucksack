@@ -23,6 +23,8 @@ Plug 'dense-analysis/ale'                " ALE : linting
 Plug 'tpope/vim-commentary'              " Toggle comments
 Plug 'tpope/vim-fugitive'                " Git client
 
+Plug 'elixir-editors/vim-elixir'         " vim config for Elixir
+
 
 call plug#end()
 
