@@ -21,6 +21,8 @@ Plug 'tpope/vim-surround'                " Change surrounding tokens (cs, ds, ys
 
 Plug 'dense-analysis/ale'                " ALE : linting
 Plug 'tpope/vim-commentary'              " Toggle comments
+Plug 'tpope/vim-fugitive'                " Git client
+
 
 call plug#end()
 
