@@ -23,6 +23,17 @@ Ctrl+W...
 - H,J,K,L -- filling half of the window
 - T -- to a new tab
 
+## Getting Help / Fishing
+
+:map  -- list mappings for normal, visual, select, and operator modes (i.e. when you're navigating)
+:map! -- list mappings for insert and command-line (i.e. when you're typing)
+
+Modes:
+- n -- normal
+- i -- insert
+- c -- command-line
+- v -- visual & select
+
 ## netrw
 
 - % -- create new file

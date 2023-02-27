@@ -10,6 +10,8 @@ call plug#begin('~/.vim/rucksack-plugged')
 
 "  plugin library: https://vimawesome.com
 Plug 'tpope/vim-sensible'                " defaults that everyone can agree on.
+Plug '/usr/local/opt/fzf'                " FuZzy Finder (core functions and :FZF command)
+Plug 'junegunn/fzf.vim'                  " + additional .vimrc commands and functions
 
 Plug 'altercation/vim-colors-solarized'  " my favorite color scheme
 Plug 'vim-airline/vim-airline'           " status line
@@ -37,6 +39,29 @@ endif
 
 "=========================================================================
 " Plugin Configuration (alphabetical)
+
+"==- fzf
+"  https://github.com/junegunn/fzf/blob/master/README-VIM.md
+
+let g:fzf_layout = { 'window': { 'width': 0.90, 'height': 0.9}}
+let g:fzf_history_dir = '~/.fzf/fzf-history'
+
+"==- fzf.vim
+"  https://github.com/junegunn/fzf.vim
+"
+let g:fzf_preview_window = ['right,55%', 'ctrl-/']
+
+nmap <c-p> :Files<CR>
+
+" Mapping selecting mappings (in various modes)
+nmap <leader><tab> <plug>(fzf-maps-n)
+xmap <leader><tab> <plug>(fzf-maps-x)
+omap <leader><tab> <plug>(fzf-maps-o)
+
+" Insert mode completion
+imap <c-x><c-k> <plug>(fzf-complete-word)
+imap <c-x><c-f> <plug>(fzf-complete-path)
+imap <c-x><c-l> <plug>(fzf-complete-line)
 
 
 "==- vim-airline
