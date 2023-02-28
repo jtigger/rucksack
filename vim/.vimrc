@@ -11,6 +11,7 @@ call plug#begin('~/.vim/rucksack-plugged')
 "  plugin library: https://vimawesome.com
 Plug 'tpope/vim-sensible'                " defaults that everyone can agree on.
 Plug '/usr/local/opt/fzf'                " FuZzy Finder (core functions and :FZF command)
+Plug '/opt/homebrew/opt/fzf'             " 👆 on arm64 homebrew
 Plug 'junegunn/fzf.vim'                  " + additional .vimrc commands and functions
 
 Plug 'altercation/vim-colors-solarized'  " my favorite color scheme
