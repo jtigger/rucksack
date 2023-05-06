@@ -40,6 +40,7 @@ brew "speedtest"
 # cask "firefox"
 # cask "google-chrome"
 # cask "tor-browser"
+# brew "brave-browser"
 brew "defaultbrowser"    # ref: Alfred Workflow
 
 # ===- Encryption -===
