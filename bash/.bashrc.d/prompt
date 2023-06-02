@@ -27,7 +27,7 @@ function recalc_git_stats() {
   _p_STG_DIFF=( $( diff_stats_from_shortstat "${shortstat}" ) )
 
   _p_STASH_DIFFS=""
-  stash_shortstats=$( git stash list --shortstat | egrep "[:digit:]* files? changed" )
+  stash_shortstats=$( git stash list --shortstat | egrep "[[:digit:]]* files? changed" )
   IFS=$'\n'; for shortstat in $stash_shortstats ; do
     _p_STASH_DIFFS+="'($( diff_stats_from_shortstat ${shortstat} ))' "
   done; unset IFS
