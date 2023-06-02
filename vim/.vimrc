@@ -31,11 +31,11 @@ Plug 'elixir-editors/vim-elixir'         " vim config for Elixir
 
 call plug#end()
 
-if empty($VIM_BACKGROUND)
-  " light | dark
-  let g:background="dark"
+" DARK_MODE=(light | dark)
+if empty($DARK_MODE)
+  let g:background="light"
 else
-  let g:background=$VIM_BACKGROUND
+  let g:background="dark"
 endif
 
 "=========================================================================

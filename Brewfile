@@ -20,20 +20,23 @@ brew "ripgrep"
 brew "tldr"
 brew "tree"
 brew "watch"
+brew "dos2unix"
+brew "direnv"
 
 brew "tmux"
 cask "iterm2"
 cask "ngrok"
 cask "rectangle"
+cask "tuple"
 
-cask "1password"
+# cask "1password"
 cask "1password/tap/1password-cli"
 cask "alfred"            # current = v5
 # cask "signal"
 cask "logseq"
 
 # ===- Nice-to-haves -===
-brew "vmware-tanzu/carvel/vendir"
+#brew "vmware-tanzu/carvel/vendir"
 brew "speedtest"
 
 # Browsers
@@ -44,8 +47,8 @@ brew "speedtest"
 brew "defaultbrowser"    # ref: Alfred Workflow
 
 # ===- Encryption -===
-brew "sops"
-brew "age"
+#brew "sops"
+#brew "age"
 
 
 # ===- Container Runtimes -===
@@ -54,62 +57,62 @@ brew "age"
 # brew "podman"
 
 # > Rancher Desktop
-cask "rancher"
+# cask "rancher"
 
 # ===- Kubernetes Distro -===
-brew "kind"
+# brew "kind"
 # brew "minikube"
 
 
 # ===- Common Development Tooling -===
 tap "pivotal/tap"
 brew "pivotal/tap/git-together"
-brew "gh"   # GitHub CLI
+brew "gh"                       # GitHub CLI
+brew "asdf"                     # installing multiple versions of languages (e.g. Elixir)
+
+
+# ===- IDEs -===
+cask "visual-studio-code"
 
 
 # ===- Text File Processing -===
 brew "htmlq" # HTML
 brew "jq"    # JSON
-
-# YAML
-brew "vmware-tanzu/carvel/ytt"
 brew "yq"
+brew "vmware-tanzu/carvel/ytt"
 
 
 # ===- Go -===
-brew "go"
-brew "golangci-lint"
-cask "goland"
+# brew "go"
+# brew "golangci-lint"
+# cask "goland"
 # brew "go@1.17" # prior versions
-
-# ===- Elixir -===
-brew "elixir"
 
 # ===- Java -===
 # (see https://stackoverflow.com/a/32811065)
-brew "java"                                  # Lastest (OpenJDK)
+# brew "java"                                  # Lastest (OpenJDK)
 # brew "java11"                              # Java11
 # cask "adoptopenjdk/openjdk/adoptopenjdk8"  # Java8
 # cask "intellij"
 
 # ===- JavaScript -===
-#brew "npm"
+brew "npm"
 brew "node"
 
 
 # ===- Network Diagnostics -===
-cask "zenmap"        # nmap and friends
+# cask "zenmap"        # nmap and friends
 
 # ===- Kubernetes Tooling -===
-brew "k9s"
+# brew "k9s"
 
 brew "vmware-tanzu/carvel/kapp"
 # brew "kwt"
 
 # ===- Image Building -===
 # brew "buildpacks/tap/pack"    # one of the builders to can configure with kbld
-brew "ko"   # images from Go apps
-brew "trivy"
+# brew "ko"   # images from Go apps
+# brew "trivy"
 
 
 # ===- Graphics Tools -===
@@ -121,7 +124,8 @@ brew "trivy"
 
 # ===- Project-Specific -===
 # brew "gnu-tar"
+cask "dbeaver-community"    # dep: SQL Server
 
 # ===- Cloud Providers -===
-tap "weaveworks/tap"
-brew "eksctl"
+# tap "weaveworks/tap"
+# brew "eksctl"
