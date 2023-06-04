@@ -8,5 +8,5 @@ echo "Affixing input volume to: $DESIRED_VOLUME."
 
 while true; do
    osascript -e "set volume input volume $DESIRED_VOLUME"
-   sleep 0.1
+   sleep 1
 done

@@ -34,6 +34,18 @@
   - Preferences > Profiles > Keys
       - Left Option Key (o) Esc+
 
+## Override Auto Gain
+
+```console
+launchctl load ~/Library/LaunchAgents/com.rubiner-ryan.jtigger.fix-input-volume.plist
+```
+
+to disable this:
+
+```console
+launchctl unload ~/Library/LaunchAgents/com.rubiner-ryan.jtigger.fix-input-volume.plist
+```
+
 ## Additional Tools to Install
 
 Install OSX Command-Line tools to enable remote debugging of processes (e.g. from within GoLand)
