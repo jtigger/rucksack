@@ -7,7 +7,7 @@
     <key>ProgramArguments</key>
     <array>
         <string>/bin/bash</string>
-        <string>/Users/johnnycyberseed/rucksack/OSX/bin/fix-input-volume.sh</string>
+        <string>/Users/johnnycyberseed/rucksack/darwin/fix-input-volume/fix-input-volume.sh</string>
         <string>70</string>
     </array>
     <key>RunAtLoad</key>
