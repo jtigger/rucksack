@@ -22,6 +22,7 @@ brew "tree"
 brew "watch"
 brew "dos2unix"
 brew "direnv"
+brew "pstree"
 
 brew "tmux"
 cask "iterm2"
