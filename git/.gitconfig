@@ -23,7 +23,6 @@
 [include]
 	path = ~/.git-together
   path = ~/.gitconfig-grep
-  path = ~/.gitconfig-sign
 
 [push]
   default = simple
@@ -34,6 +33,12 @@
 
 [init]
 	defaultBranch = main
-[user]
-	email = john@mechanical-orchard.com
-	name = John Ryan
+
+[gpg]
+  format = ssh
+
+[gpg "ssh"]
+  program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+
+[commit]
+  gpgsign = true
