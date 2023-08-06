@@ -67,10 +67,16 @@ function recalc_ps1() {
       GIT_STATS=" :: ${_p_BRANCH_NAME}"
     fi
   else
-    GIT_STATS=""
+    GIT_STATS=" :: (unversioned)"
   fi
-  FULL_PWD="${SOL_COMMENT}${PWD}${NO_COLOR}"
-  export PS1="${SOL_EMPHASIZE}\u${NO_COLOR}@\H:${FULL_PWD}${GIT_STATS}\n\$ "
+  FULL_PWD="${SOL_COMMENT}${PWD/$HOME/~}${NO_COLOR}"
+  if [[ ${LAST_CMD_EXIT_STATUS} -eq 0 ]]; then
+    LAST_CMD_SIGNAL="${SOL_GREEN} ok${NO_COLOR}"
+  else
+    LAST_CMD_SIGNAL="${SOL_ORANGE}$(pad_for_number 3 ${LAST_CMD_EXIT_STATUS})${LAST_CMD_EXIT_STATUS}${NO_COLOR}"
+  fi
+
+  export PS1="${FULL_PWD}${GIT_STATS}\n↪${LAST_CMD_SIGNAL} \$ "
 }
 
 function invoke_function_is_exists() {
@@ -81,8 +87,18 @@ function invoke_function_is_exists() {
 }
 
 function update_shell() {
+  LAST_CMD_EXIT_STATUS=$?
   invoke_function_is_exists append_last_command_to_history
   recalc_ps1
+  export PS2_LINENO=2
+}
+
+pad_for_number() {
+  want_len=$1
+  num_digits=${#2}
+  num_spaces=$((want_len-num_digits > 0 ? want_len-num_digits : 0))
+  printf "%*s" $num_spaces
 }
 
 PROMPT_COMMAND=update_shell
+PS2='$(pad_for_number 4 ${PS2_LINENO})$((PS2_LINENO++)) | '
