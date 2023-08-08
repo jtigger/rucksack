@@ -27,6 +27,7 @@ source "$(brew --prefix)/opt/asdf/libexec/asdf.sh"
 eval "$(direnv hook bash)"
 
 # configure bat
+export DARK_MODE=dark
 if [[ -z ${DARK_MODE+x} ]]; then
   export BAT_THEME="Solarized (light)"
 else
