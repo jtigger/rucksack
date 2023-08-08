@@ -10,5 +10,12 @@
     mkdir .1password && cd .1password
     ln -s "/Users/<username>/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock" .
     ```
+4. Symlink the SSH Agent configuration
+
+    ```bash
+    mkdir -p ~/.config/1Password/ssh
+    cd ~/.config/1Password/ssh 
+    ln -s ~/rucksack/1password/agent.toml .
+    ```
 
 jsr-zk://202204112153.md
