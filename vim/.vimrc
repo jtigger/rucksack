@@ -27,6 +27,7 @@ Plug 'tpope/vim-commentary'              " Toggle comments
 Plug 'tpope/vim-fugitive'                " Git client
 
 Plug 'elixir-editors/vim-elixir'         " vim config for Elixir
+Plug 'hashivim/vim-terraform'            " without this, terraform editing is milquetoast
 
 
 call plug#end()

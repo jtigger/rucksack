@@ -127,5 +127,12 @@ brew "vmware-tanzu/carvel/kapp"
 cask "dbeaver-community"    # dep: SQL Server
 
 # ===- Cloud Providers -===
-# tap "weaveworks/tap"
-# brew "eksctl"
+tap "weaveworks/tap"
+brew "eksctl"
+brew "terraformer"
+
+tap "hashicorp/tap"
+brew "terraform"
+
+# ===- AWS Specific Tooling -===
+brew "aws2-wrap"   # https://github.com/linaro-its/aws2-wrap
