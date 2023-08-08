@@ -18,7 +18,7 @@ source "$HOME/rucksack/bash/.bashrc.d/completion"
 source "$HOME/rucksack/bash/.bashrc.d/lscolors"
 source "$HOME/rucksack/bash/.bashrc.d/fzf"
 export PATH="$PATH:$HOME/rucksack/bin"
-
+export PATH="$PATH:/Applications/IntelliJ IDEA CE.app/Contents/MacOS" # enable command-line launch of idea (e.g. to use the diff tool)
 
 # enable asdf
 source "$(brew --prefix)/opt/asdf/libexec/asdf.sh"
