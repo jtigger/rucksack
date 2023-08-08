@@ -1,0 +1,13 @@
+# Handling Dates and Times
+
+## Convert a Unix Timestamp to a Human-Readable Date
+
+OS X:
+
+```
+$ date -r "1688250905"
+Sat Jul  1 15:35:05 PDT 2023
+```
+_(ensure timestamp is a 10-digit string, not at 13-digit string)_
+
+(src: https://stackoverflow.com/a/3249936)
