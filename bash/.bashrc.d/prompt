@@ -67,7 +67,7 @@ function recalc_ps1() {
       GIT_STATS=" :: ${_p_BRANCH_NAME}"
     fi
   else
-    GIT_STATS=" :: (unversioned)"
+    GIT_STATS=" :: ${SOL_BODY}(unversioned)${NO_COLOR}"
   fi
   FULL_PWD="${SOL_COMMENT}${PWD/$HOME/~}${NO_COLOR}"
   if [[ ${LAST_CMD_EXIT_STATUS} -eq 0 ]]; then

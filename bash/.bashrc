@@ -35,4 +35,7 @@ else
 fi
 export BAT_PAGER="less --no-init --RAW-CONTROL-CHARS --quit-if-one-screen"
 
+if [[ -r ~/workspace/omni/omni/infra/scripts/env-helpers-quiet.sh ]]; then
+  source ~/workspace/omni/omni/infra/scripts/env-helpers-quiet.sh
+fi
 

@@ -6,6 +6,7 @@
 # -t = sort by date/time modified
 alias l='ls -FGahl'
 alias ll='ls -FGahl'
+alias lll='ls -FGahl'
 alias lst='ls -FGahlt'
 
 # safer versions of mv and rm
