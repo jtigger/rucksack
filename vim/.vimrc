@@ -32,7 +32,6 @@ Plug 'hashivim/vim-terraform'            " without this, terraform editing is mi
 
 call plug#end()
 
-" DARK_MODE=(light | dark)
 if empty($DARK_MODE)
   let g:background="light"
 else

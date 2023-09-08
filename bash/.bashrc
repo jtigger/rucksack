@@ -1,5 +1,7 @@
 # I get it, zsh is the default shell; going all-in on bash 5.x+
 export BASH_SILENCE_DEPRECATION_WARNING=1
+export DARK_MODE=true
+export EDITOR=vim
 
 # many/most tools are installed through brew; to find them, initialize brew env, first.
 if [[ $(arch) == "i386" ]]; then
@@ -27,7 +29,6 @@ source "$(brew --prefix)/opt/asdf/libexec/asdf.sh"
 eval "$(direnv hook bash)"
 
 # configure bat
-export DARK_MODE=dark
 if [[ -z ${DARK_MODE+x} ]]; then
   export BAT_THEME="Solarized (light)"
 else
