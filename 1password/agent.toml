@@ -33,5 +33,9 @@ account = "Mechanical Orchard"
 vault = "Private"
 
 [[ssh-keys]]
+account = "Mechanical Orchard"
+vault = "Build--omni"
+
+[[ssh-keys]]
 account = "The Ryans"
 vault = "JTigger"
