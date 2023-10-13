@@ -17,6 +17,9 @@ alias cp='cp -vn'
 # du to display human-readable, by default.
 alias du='du -h'
 
+# helpful
+alias cdroot='cd $(git rev-parse --show-toplevel)'
+
 ## App-specific short-hands
 alias baty='bat --language yaml'
 # alias git=git-together
