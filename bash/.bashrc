@@ -1,3 +1,4 @@
+echo "sourcing ~/.bashrc"
 # I get it, zsh is the default shell; going all-in on bash 5.x+
 export BASH_SILENCE_DEPRECATION_WARNING=1
 export DARK_MODE=true
@@ -25,9 +26,6 @@ export PATH="$PATH:/Applications/IntelliJ IDEA CE.app/Contents/MacOS" # enable c
 # enable asdf
 source "$(brew --prefix)/opt/asdf/libexec/asdf.sh"
 
-# enable direnv
-eval "$(direnv hook bash)"
-
 # configure bat
 if [[ -z ${DARK_MODE+x} ]]; then
   export BAT_THEME="Solarized (light)"
@@ -40,3 +38,8 @@ if [[ -r ~/workspace/omni/omni/infra/scripts/env-helpers-quiet.sh ]]; then
   source ~/workspace/omni/omni/infra/scripts/env-helpers-quiet.sh
 fi
 
+if [[ -r ~/workspace/omni/omni/.local/.bashrc ]]; then
+  source ~/workspace/omni/omni/.local/.bashrc
+fi
+
+source "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/bashrc"
