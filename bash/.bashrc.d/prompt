@@ -9,6 +9,10 @@ function is_in_git_repo() {
   echo $?
 }
 
+function k8s_context() {
+  kubectl config current-context
+}
+
 function diff_stats_from_shortstat() {
   local shortstat="$1"  # output from git diff --shortstat e.g. "10 files changed, 58 insertions(+), 1293 deletions(-)"
   local diff_stats=()
@@ -55,19 +59,20 @@ function render_diff() {
 }
 
 function recalc_ps1() {
+  K8S_CTX=" : ${SOL_GREEN}$(k8s_context)${NO_COLOR}"
   if [[ $(is_in_git_repo) -eq "0" ]]; then
     recalc_git_stats
-    GIT_STATS=" :: ${SOL_YELLOW}${_p_BRANCH_REF}${NO_COLOR}"
+    GIT_STATS=" : ${SOL_YELLOW}${_p_BRANCH_REF}${NO_COLOR}"
     if [[ ${_p_BRANCH_REF} != "(detached)" ]]; then
       local branch="${SOL_YELLOW}(${SOL_EMPHASIZE}${_p_BRANCH_NAME}${SOL_YELLOW})${NO_COLOR} ${SOL_YELLOW}(${SOL_RED}${_p_BRANCH_UPSTREAM}${NO_COLOR} ${SOL_CYAN}${_p_BRANCH_AHEAD} ${SOL_MAGENTA}${_p_BRANCH_BEHIND}${SOL_YELLOW})${NO_COLOR}"
       local wrk="$( render_diff ${_p_WRK_DIFF[@]} )"
       local stg="$( render_diff ${_p_STG_DIFF[@]} )"
       GIT_STATS="${GIT_STATS} ${branch} wrk:${wrk} stg:${stg}"
     else
-      GIT_STATS=" :: ${_p_BRANCH_NAME}"
+      GIT_STATS=" : ${_p_BRANCH_NAME}"
     fi
   else
-    GIT_STATS=" :: ${SOL_BODY}(unversioned)${NO_COLOR}"
+    GIT_STATS=" : ${SOL_BODY}(unversioned)${NO_COLOR}"
   fi
   FULL_PWD="${SOL_COMMENT}${PWD/$HOME/~}${NO_COLOR}"
   if [[ ${LAST_CMD_EXIT_STATUS} -eq 0 ]]; then
@@ -76,7 +81,7 @@ function recalc_ps1() {
     LAST_CMD_SIGNAL="${SOL_ORANGE}$(pad_for_number 3 ${LAST_CMD_EXIT_STATUS})${LAST_CMD_EXIT_STATUS}${NO_COLOR}"
   fi
 
-  export PS1="${FULL_PWD}${GIT_STATS}\n↪${LAST_CMD_SIGNAL} \$ "
+  export PS1="${FULL_PWD}${K8S_CTX}${GIT_STATS}\n↪${LAST_CMD_SIGNAL} \$ "
 }
 
 function invoke_function_is_exists() {
