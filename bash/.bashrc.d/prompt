@@ -14,16 +14,36 @@ function k8s_context() {
 }
 
 function diff_stats_from_shortstat() {
-  local shortstat="$1"  # output from git diff --shortstat e.g. "10 files changed, 58 insertions(+), 1293 deletions(-)"
+  # output from git diff --shortstat:
+  #   "10 files changed, 58 insertions(+), 1293 deletions(-)"
+  #   "1 file changed, 131 deletions(-)"
+  #   "2 files changes, 22 insertions(+)"
+  local shortstat="$1"
   local diff_stats=()
-  diff_stats+=( $( echo $shortstat | awk '{print $1}' ) )
-  diff_stats+=( $( echo $shortstat | grep --only-matching "\d\+ insertion" | awk '{print $1}' ) )
-  diff_stats+=( $( echo $shortstat | grep --only-matching "\d\+ deletion" | awk '{print $1}' ) )
+  diff_stats+=( "$( echo "${shortstat}" | awk '{print ($1=="" ? "0" : $1)}' )" )
+  diff_stats+=( "$( echo "${shortstat}" | { grep --only-matching "\d\+ insertion" || echo ""; } | awk '{print ($1=="" ? "0" : $1)}' )" )
+  diff_stats+=( "$( echo "${shortstat}" | { grep --only-matching "\d\+ deletion" || echo ""; }  | awk '{print ($1=="" ? "0" : $1)}' )" )
 
   echo -n "${diff_stats[*]}"
 }
 
 function recalc_git_stats() {
+  local status=$( git status --porcelain=2 --branch )
+  #   branch.oid 2db58365bbc718762d0cbc189a1eb90e47334f09
+  #   branch.head master
+  #   branch.upstream origin/master
+  #   branch.ab +1 -0
+  #   ? untracked-file.txt
+  #   1 .M N... 100644 100644 100644 ef281f1b7ca0d420782a37d888bbd78837f4454e ef281f1b7ca0d420782a37d888bbd78837f4454e modified-file.txt
+  #   1 .D N... 100644 100644 000000 70f6714344fa6ad38bcf6942ec55bf269fe708c6 70f6714344fa6ad38bcf6942ec55bf269fe708c6 deleted-file.txt
+
+  _p_BRANCH_REF=$( echo "${status}" | grep "branch.oid" | awk '{ print $3 }' | cut -c1-7 )
+  _p_BRANCH_NAME=$( echo "${status}" | grep "branch.head" | awk '{ print $3 }' )
+  _p_BRANCH_UPSTREAM=$( echo "${status}" | grep "branch.upstream" | awk '{ print $3 }' )
+  _p_BRANCH_AHEAD=$( echo "${status}" | grep "branch.ab" | awk '{ print $3 }' | tr -d '+' )
+  _p_BRANCH_BEHIND=$( echo "${status}" | grep "branch.ab" | awk '{ print $4 }' | tr -d '-' )
+  _p_BRANCH_UNTRACKED=$( echo "${status}" | { grep "^?" || true; } | wc -l | tr -d ' ' )
+
   local shortstat="$( git diff --shortstat )"  
   _p_WRK_DIFF=( $( diff_stats_from_shortstat "${shortstat}" ) )
 
@@ -35,23 +55,12 @@ function recalc_git_stats() {
   IFS=$'\n'; for shortstat in $stash_shortstats ; do
     _p_STASH_DIFFS+="'($( diff_stats_from_shortstat ${shortstat} ))' "
   done; unset IFS
-
-  # git-status-porcelain Ex:
-    # branch.oid 2db58365bbc718762d0cbc189a1eb90e47334f09
-    # branch.head master
-    # branch.upstream origin/master
-    # branch.ab +1 -0
-  _p_BRANCH_REF=$( git status --porcelain=2 --branch | grep "branch.oid" | awk '{ print $3 }' | cut -c1-7 )
-  _p_BRANCH_NAME=$( git status --porcelain=2 --branch  | grep "branch.head" | awk '{ print $3 }' )
-  _p_BRANCH_UPSTREAM=$( git status --porcelain=2 --branch  | grep "branch.upstream" | awk '{ print $3 }' )
-  _p_BRANCH_AHEAD=$( git status --porcelain=2 --branch  | grep "branch.ab" | awk '{ print $3 }' )
-  _p_BRANCH_BEHIND=$( git status --porcelain=2 --branch  | grep "branch.ab" | awk '{ print $4 }' )
 }
 
 function render_diff() {
   local diff_stats=("$@")  # [0] = num files in diff; [1] = num of insertions; [2] = num of deletions
 
-  if [[ "${diff_stats[0]}" != "" ]]; then
+  if [[ "${diff_stats[0]}" != "0" ]]; then
     echo -n "${SOL_YELLOW}Δ${diff_stats[0]}${NO_COLOR}(${SOL_GREEN}+${diff_stats[1]} ${SOL_RED}-${diff_stats[2]}${NO_COLOR})"
   else
     echo -n "-"
@@ -59,20 +68,30 @@ function render_diff() {
 }
 
 function recalc_ps1() {
-  K8S_CTX=" : ${SOL_GREEN}$(k8s_context)${NO_COLOR}"
+  K8S_CTX=" ⎈ ${SOL_BLUE}$(k8s_context)${NO_COLOR}"
   if [[ $(is_in_git_repo) -eq "0" ]]; then
     recalc_git_stats
-    GIT_STATS=" : ${SOL_YELLOW}${_p_BRANCH_REF}${NO_COLOR}"
-    if [[ ${_p_BRANCH_REF} != "(detached)" ]]; then
-      local branch="${SOL_YELLOW}(${SOL_EMPHASIZE}${_p_BRANCH_NAME}${SOL_YELLOW})${NO_COLOR} ${SOL_YELLOW}(${SOL_RED}${_p_BRANCH_UPSTREAM}${NO_COLOR} ${SOL_CYAN}${_p_BRANCH_AHEAD} ${SOL_MAGENTA}${_p_BRANCH_BEHIND}${SOL_YELLOW})${NO_COLOR}"
+    if [[ ${_p_BRANCH_NAME} == "(detached)" ]]; then
+      local branch="${_p_BRANCH_NAME}"
+      local deltas=""
+    else
+      if [[ "${_p_BRANCH_UPSTREAM}" == "" ]]; then
+        local branch="${_p_BRANCH_NAME}"
+      else
+        local branch="${_p_BRANCH_NAME}${SOL_CYAN}↑${_p_BRANCH_AHEAD}${SOL_MAGENTA}↓${_p_BRANCH_BEHIND}"
+      fi
+      if [[ "${_p_BRANCH_UNTRACKED}" != "0" ]]; then
+        local untracked="(${SOL_RED}?${_p_BRANCH_UNTRACKED}${NO_COLOR})"
+      else
+        local untracked=""
+      fi
       local wrk="$( render_diff ${_p_WRK_DIFF[@]} )"
       local stg="$( render_diff ${_p_STG_DIFF[@]} )"
-      GIT_STATS="${GIT_STATS} ${branch} wrk:${wrk} stg:${stg}"
-    else
-      GIT_STATS=" : ${_p_BRANCH_NAME}"
+      local deltas=" ${NO_COLOR}wip:${wrk}${untracked} stg:${stg}"
     fi
+    GIT_STATS="  ${SOL_YELLOW}${_p_BRANCH_REF} (${SOL_BODY}${branch}${SOL_YELLOW})${deltas}"
   else
-    GIT_STATS=" : ${SOL_BODY}(unversioned)${NO_COLOR}"
+    GIT_STATS="  ${SOL_BODY}(unversioned)${NO_COLOR}"
   fi
   FULL_PWD="${SOL_COMMENT}${PWD/$HOME/~}${NO_COLOR}"
   if [[ ${LAST_CMD_EXIT_STATUS} -eq 0 ]]; then
