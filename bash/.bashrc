@@ -27,6 +27,7 @@ export PATH="$PATH:/Applications/IntelliJ IDEA CE.app/Contents/MacOS" # enable c
 source "$(brew --prefix)/opt/asdf/libexec/asdf.sh"
 
 # configure bat
+#export DARK_MODE=dark
 if [[ -z ${DARK_MODE+x} ]]; then
   export BAT_THEME="Solarized (light)"
 else

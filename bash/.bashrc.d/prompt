@@ -21,8 +21,8 @@ function diff_stats_from_shortstat() {
   local shortstat="$1"
   local diff_stats=()
   diff_stats+=( "$( echo "${shortstat}" | awk '{print ($1=="" ? "0" : $1)}' )" )
-  diff_stats+=( "$( echo "${shortstat}" | { grep --only-matching "\d\+ insertion" || echo ""; } | awk '{print ($1=="" ? "0" : $1)}' )" )
-  diff_stats+=( "$( echo "${shortstat}" | { grep --only-matching "\d\+ deletion" || echo ""; }  | awk '{print ($1=="" ? "0" : $1)}' )" )
+  diff_stats+=( "$( echo "${shortstat}" | { grep --only-matching "[0-9]\+ insertion" || echo ""; } | awk '{print ($1=="" ? "0" : $1)}' )" )
+  diff_stats+=( "$( echo "${shortstat}" | { grep --only-matching "[0-9]\+ deletion" || echo ""; }  | awk '{print ($1=="" ? "0" : $1)}' )" )
 
   echo -n "${diff_stats[*]}"
 }
@@ -51,7 +51,7 @@ function recalc_git_stats() {
   _p_STG_DIFF=( $( diff_stats_from_shortstat "${shortstat}" ) )
 
   _p_STASH_DIFFS=""
-  stash_shortstats=$( git stash list --shortstat | egrep "[:digit:]* files? changed" )
+  stash_shortstats=$( git stash list --shortstat | grep "[0-9]* files? changed" )
   IFS=$'\n'; for shortstat in $stash_shortstats ; do
     _p_STASH_DIFFS+="'($( diff_stats_from_shortstat ${shortstat} ))' "
   done; unset IFS
