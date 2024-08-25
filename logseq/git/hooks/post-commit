@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# Ensure all commits are up on the repo
+git push origin main

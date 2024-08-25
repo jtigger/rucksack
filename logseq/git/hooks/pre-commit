@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+# To make output in Logseq verbose, include stdout as well
+exec 1>&2
+
+# As the only user, expect to make edits in one place at a time.
+out=$(git pull --no-rebase)
+
+if [[ "${out}" == "Already up to date." ]]; then
+  # when scripts produce no output, no status is displayed in logseq
+  :
+else
+  echo "${out}"
+fi
+
+# include deletions
+git add --all
+
