@@ -5,6 +5,7 @@ else
   DESIRED_VOLUME=$(osascript -e "input volume of (get volume settings)")
 fi
 echo "Affixing input volume to: $DESIRED_VOLUME."
+say "Affixing input volume to: $DESIRED_VOLUME."
 
 while true; do
    osascript -e "set volume input volume $DESIRED_VOLUME"
