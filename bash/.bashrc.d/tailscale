@@ -1,0 +1,8 @@
+# Enable TailScale CLI
+
+if [[ -r /Applications/Tailscale.app ]]; then
+  alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
+else
+  echo "Warning: Unable to establish 'tailscale' alias; unable to find Tailscale install."
+fi
+
