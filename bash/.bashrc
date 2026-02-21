@@ -21,6 +21,7 @@ source "$HOME/rucksack/bash/.bashrc.d/completion"
 source "$HOME/rucksack/bash/.bashrc.d/lscolors"
 source "$HOME/rucksack/bash/.bashrc.d/fzf"
 source "$HOME/rucksack/bash/.bashrc.d/tailscale"
+source "$HOME/rucksack/bash/.bashrc.d/claude-code"
 
 export PATH="$PATH:$HOME/rucksack/bin"
 export PATH="$PATH:/Applications/IntelliJ IDEA CE.app/Contents/MacOS" # enable command-line launch of idea (e.g. to use the diff tool)

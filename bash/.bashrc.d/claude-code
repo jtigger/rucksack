@@ -1,0 +1,3 @@
+# Installer puts Native Claude Code here...
+export CLAUDE_CODE_HOME="$HOME/.local/bin"
+export PATH="$PATH:$CLAUDE_CODE_HOME"
