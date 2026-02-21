@@ -3,6 +3,7 @@
   lola = log --graph --oneline --all --decorate=short
   ci = commit
   co = checkout
+  sw = switch
 
 [color]
   status = auto
@@ -13,6 +14,7 @@
 [commit]
   # include diff at the bottom of the commit (see 'git commit -v')
   verbose = true
+  template = ~/.gitmessage
 
 [core]
   # APFS is, by default, case-insensitive; avoid nasty case-difference situations...
@@ -26,6 +28,10 @@
 
 [push]
   default = simple
+  autoSetupRemote = true
+
+[pull]
+  rebase = true
 
 [status]
   ; include anything that's been stashed in `git status`
@@ -42,3 +48,9 @@
 
 [commit]
   gpgsign = true
+
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
