@@ -1,7 +1,13 @@
-#!/usr/bin/env bash
+#!/usr/bin/env bash -euo pipefail
 
-pushd ~/.logseq/git/_Users_johnnycyberseed_workspace_johnnycyberseed_ibm-zk/
+set -x
 
-git push
+zks="johnnycyberseed_ibm-zk jtigger_ai-zk jtigger_pete-holmes-zk"
 
-popd
+for zk in $zks; do
+  echo $zk
+  pushd ~/.logseq/git/_Users_johnnycyberseed_workspace_${zk}/
+  git push
+  popd
+done
+
