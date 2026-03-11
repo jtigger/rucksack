@@ -9,8 +9,10 @@ device_id=$(blueutil --paired --format json \
 
 echo $device_id
 
-blueutil --disconnect ${device_id}
-blueutil --power 0
+if [[ $(blueutil --power) -eq 1 ]]; then
+  blueutil --disconnect ${device_id}
+  blueutil --power 0
+fi
 pmset sleepnow
 
 blueutil --power 1
