@@ -1,21 +1,23 @@
 #!/usr/bin/env bash
 
-set -xe
-
 HEADSET_NAME="Jabra Elite 85h"
 
-# address: 70-bf-92-37-64-64, not connected, not favourite, paired, name: "Jabra Elite 85h", recent access date: 2026-03-11 02:24:38 +0000
-device_id=$(blueutil --paired \
-  | grep "${HEADSET_NAME}" \
-  | awk -F, '{ print $1 }' \
-  | awk -F: '{ print $2 }'
+# [{"address":"70-bf-92-37-64-64","recentAccessDate":"2026-03-11T06:17:16-07:00","favourite":false,"name":"Jabra Elite 85h","connected":false,"paired":true}]
+device_id=$(blueutil --paired --format json \
+  | jq -r '.[] | select(.name == "Jabra Elite 85h") | .address'
 )
+
+echo $device_id
 
 blueutil --disconnect ${device_id}
 blueutil --power 0
 pmset sleepnow
-sleep 5
+
 blueutil --power 1
-blueutil --connect ${device_id}
+
+read -r -p "Reconnect ${HEADSET_NAME}? [y/N] " response
+if [[ "$response" =~ ^[Yy]$ ]]; then
+  blueutil --connect ${device_id}
+fi
 
 
