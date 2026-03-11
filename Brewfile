@@ -25,7 +25,7 @@ brew "direnv"
 
 brew "tmux"
 cask "iterm2"
-cask "ngrok"
+#cask "ngrok"
 cask "rectangle"
 cask "tuple"
 
