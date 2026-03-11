@@ -2,7 +2,7 @@
 
 set -x
 
-zks="johnnycyberseed_ibm-zk jtigger_ai-zk jtigger_pete-holmes-zk"
+zks="johnnycyberseed_ibm-zk jtigger_ai-zk johnnycyberseed_bom-dia-zk"
 
 for zk in $zks; do
   echo $zk
