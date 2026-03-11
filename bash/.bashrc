@@ -24,6 +24,7 @@ source "$HOME/rucksack/bash/.bashrc.d/tailscale"
 source "$HOME/rucksack/bash/.bashrc.d/claude-code"
 
 export PATH="$PATH:$HOME/rucksack/bin"
+export PATH="$PATH:$HOME/rucksack/OSX/bin"
 export PATH="$PATH:/Applications/IntelliJ IDEA CE.app/Contents/MacOS" # enable command-line launch of idea (e.g. to use the diff tool)
 
 # enable asdf
@@ -37,10 +38,6 @@ else
   export BAT_THEME="Solarized (dark)"
 fi
 export BAT_PAGER="less --no-init --RAW-CONTROL-CHARS --quit-if-one-screen"
-
-# if [[ -r ~/workspace/kohls/kohls_mainframe/.local/.bashrc ]]; then
-#   source ~/workspace/kohls/kohls_mainframe/.local/.bashrc
-# fi
 
 if [[ -r ~/workspace/kdp/mf2/.local/.bashrc ]]; then
   source ~/workspace/kdp/mf2/.local/.bashrc
