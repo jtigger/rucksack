@@ -28,6 +28,7 @@ cask "iterm2"
 #cask "ngrok"
 cask "rectangle"
 cask "tuple"
+brew "blueutil"
 
 # cask "1password"
 cask "1password/tap/1password-cli"
