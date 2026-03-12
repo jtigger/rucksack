@@ -7,19 +7,15 @@ device_id=$(blueutil --paired --format json \
   | jq -r '.[] | select(.name == "Jabra Elite 85h") | .address'
 )
 
-echo $device_id
+# [{"address":"70-bf-92-37-64-64","recentAccessDate":"2026-03-11T18:40:05-07:00","paired":true,"RSSI":-51,"rawRSSI":-51,"favourite":false,"connected":true,"name":"Jabra Elite 85h","slave":false}]
+connected=$(blueutil --format json --connected | jq -r '.[] | select(.address == "'$device_id'") | .connected')
+[[ $connected == "true" ]] && blueutil --disconnect ${device_id}
+blueutil --power 0
 
-if [[ $(blueutil --power) -eq 1 ]]; then
-  blueutil --disconnect ${device_id}
-  blueutil --power 0
-fi
 pmset sleepnow
-
-blueutil --power 1
 
 read -r -p "Reconnect ${HEADSET_NAME}? [y/N] " response
 if [[ "$response" =~ ^[Yy]$ ]]; then
+  blueutil --power 1
   blueutil --connect ${device_id}
 fi
-
-
