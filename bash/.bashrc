@@ -45,4 +45,3 @@ else
   echo "(warning: no custom .bashrc found for $(hostname); using common bash setup)"
 fi
 
-source "$HOME/.cargo/env"
