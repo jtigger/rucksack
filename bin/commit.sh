@@ -2,6 +2,13 @@
 
 set -e
 
+BY_ME=false
+for arg in "$@"; do
+  if [ "$arg" = "--by-me" ]; then
+    BY_ME=true
+  fi
+done
+
 DIFF=$(git diff --staged)
 
 if [ -z "$DIFF" ]; then
@@ -19,6 +26,10 @@ if [ -z "$COMMIT_MESSAGE" ]; then
   exit 1
 fi
 
-git commit -m "${COMMIT_MESSAGE}
+if [ "$BY_ME" = false ]; then
+  COMMIT_MESSAGE="${COMMIT_MESSAGE}
 
 Co-authored-by: Claude <noreply@anthropic.com>"
+fi
+
+git commit -m "${COMMIT_MESSAGE}"
