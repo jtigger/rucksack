@@ -23,7 +23,6 @@
   excludesfile = ~/.gitignore
 
 [include]
-	path = ~/.git-together
   path = ~/.gitconfig-grep
 
 [push]
