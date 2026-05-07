@@ -1,0 +1,7 @@
+# installed with:
+# ``` 
+# curl -fsSL https://bun.sh/install | bash
+# ```
+# required by yakthang
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
