@@ -20,12 +20,10 @@ source "$HOME/rucksack/bash/.bashrc.d/prompt"
 source "$HOME/rucksack/bash/.bashrc.d/completion"
 source "$HOME/rucksack/bash/.bashrc.d/lscolors"
 source "$HOME/rucksack/bash/.bashrc.d/fzf"
-source "$HOME/rucksack/bash/.bashrc.d/tailscale"
 source "$HOME/rucksack/bash/.bashrc.d/claude-code"
 
 export PATH="$PATH:$HOME/rucksack/bin"
 export PATH="$PATH:$HOME/rucksack/OSX/bin"
-export PATH="$PATH:/Applications/IntelliJ IDEA CE.app/Contents/MacOS" # enable command-line launch of idea (e.g. to use the diff tool)
 
 # enable asdf
 source "$(brew --prefix)/opt/asdf/libexec/asdf.sh"
@@ -39,9 +37,11 @@ else
 fi
 export BAT_PAGER="less --no-init --RAW-CONTROL-CHARS --quit-if-one-screen"
 
-if [[ -r ~/workspace/kdp/mf2/.local/.bashrc ]]; then
-  source ~/workspace/kdp/mf2/.local/.bashrc
+
+# machine-specific config
+if [[ -f "$HOME/rucksack/bash/$(hostname).bashrc" ]]; then
+  source "$HOME/rucksack/bash/$(hostname).bashrc"
+else
+  echo "(warning: no custom .bashrc found for $(hostname); using common bash setup)"
 fi
 
-# should be commented-out as part required for kohls-mainframe
-source "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/bashrc"
