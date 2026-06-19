@@ -28,8 +28,9 @@ export PATH="$PATH:$HOME/rucksack/OSX/bin"
 # enable asdf
 source "$(brew --prefix)/opt/asdf/libexec/asdf.sh"
 
+eval "$(direnv hook $SHELL)"
+
 # configure bat
-#export DARK_MODE=dark
 if [[ -z ${DARK_MODE+x} ]]; then
   export BAT_THEME="Solarized (light)"
 else
