@@ -14,7 +14,7 @@ Plug '/usr/local/opt/fzf'                " FuZzy Finder (core functions and :FZF
 Plug '/opt/homebrew/opt/fzf'             " 👆 on arm64 homebrew
 Plug 'junegunn/fzf.vim'                  " + additional .vimrc commands and functions
 
-Plug 'altercation/vim-colors-solarized'  " my favorite color scheme
+"Plug 'altercation/vim-colors-solarized'  " my favorite color scheme
 Plug 'vim-airline/vim-airline'           " status line
 Plug 'vim-airline/vim-airline-themes'    " + themes
 Plug 'airblade/vim-gitgutter'            " git-diffs in the gutter
@@ -89,7 +89,8 @@ set modelines=5    " restore default lines searched for '# vim ...'  (cleared by
 "==- Appearance
 syntax enable
 let &background=g:background  " equiv to `set background=(setting of g:background)`
-colorscheme solarized
+" colorscheme solarized  -- TODO: may not be necessary on Ghostty
+
 " invisible chars
 set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,eol:¶,precedes:«,extends:»
 highlight SpecialKey ctermfg=14 ctermbg=15 guifg=LightCyan
