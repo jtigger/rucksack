@@ -1,3 +1,3 @@
 # iStatMenus
 
-- Import `iStat Menus Settings.ismp`
+- Import `iStat Menus Settings.ismp7`
