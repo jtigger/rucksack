@@ -1,6 +1,7 @@
 #!/bin/bash
 
 set -e
+set -x
 
 BY_ME=false
 for arg in "$@"; do
@@ -16,7 +17,7 @@ if [ -z "$DIFF" ]; then
   exit 1
 fi
 
-COMMIT_MESSAGE=$(claude -p --model haiku "Generate a concise git commit message in Conventional Commits format for the following staged changes. Start with a type (feat, fix, docs, style, refactor, perf, test, chore, etc.), include a scope in parentheses if applicable, and a short imperative description (50 chars max). If the commit is sufficiently complicated, include a high-level summary of the changes. Return ONLY the commit message; not code fences.
+COMMIT_MESSAGE=$(claude -p --model haiku "Generate a concise git commit message in Conventional Commits format for the following staged changes. Start with a type (feat, fix, docs, style, refactor, perf, test, chore, etc.), include a scope in parentheses if applicable, and a short imperative description (50 chars max). If the commit is sufficiently complicated, include a commit body containing high-level summary of the changes. Return ONLY the commit message; not code fences.
 
 Staged diff:
 ${DIFF}")
