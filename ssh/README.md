@@ -23,4 +23,9 @@ For each identity/SSH Key to configure:
      IdentitiesOnly yes
      IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
    ```
+4. verify configuration
+
+   ```bash
+   $ ssh -Tv git@IDENTITY-github.com
+   ```
 
