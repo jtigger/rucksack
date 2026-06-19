@@ -1,0 +1,8 @@
+{:logseq-vim-shortcuts {:version "v0.1.22", :repo "vipzhicheng/logseq-plugin-vim-shortcuts", :effect true, :theme false}
+ :logseq-vim-editor {:version "v0.0.6", :repo "vipzhicheng/logseq-plugin-vim-editor", :effect false, :theme false}
+ :logseq-awesome-styler {:version "v3.7.1", :repo "yoyurec/logseq-awesome-styler", :effect true, :theme false}
+ :logseq-toc-plugin {:version "v2.0.2", :repo "benjypng/logseq-toc-plugin", :effect true, :theme false}
+ :logseq-move-block {:version "v1.0.0", :repo "vipzhicheng/logseq-plugin-move-block", :effect true, :theme false}
+ :logseq-mermaid-plugin {:version "v2.0.4", :repo "benjypng/logseq-mermaid-plugin", :effect true, :theme false}
+ :logseq-bullet-threading {:version "v1.1.4", :repo "pengx17/logseq-plugin-bullet-threading", :effect false, :theme false}
+ :logseq-dev-theme {:version "v1.26.17", :repo "pengx17/logseq-dev-theme", :effect false, :theme true}}

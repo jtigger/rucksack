@@ -1,4 +1,6 @@
 {
+  "enableVisualModeIndicator": true,
+  "showRecentEmojis": false,
   "disabled": false,
   "keyBindings": {
     "bottom": "shift+g",
@@ -10,12 +12,14 @@
     "copyCurrentBlockContent": "y y",
     "copyCurrentBlockRef": "shift+y",
     "deleteCurrentBlock": "d d",
+    "deleteCurrentAndNextSiblingBlocks": "d j",
+    "deleteCurrentAndPrevSiblingBlocks": "d k",
     "down": "j",
     "extend": "z o",
     "extendAll": "z shift+o",
-    "highlightFocusIn": "shift+l",
-    "highlightFocusOut": "shift+h",
-    "indent": "l",
+    "highlightFocusIn": "l",
+    "highlightFocusOut": "h",
+    "indent": "shift+l",
     "insert": [
       "shift+a",
       "a"
@@ -26,7 +30,7 @@
     ],
     "nextNewBlock": "o",
     "nextSibling": "shift+j",
-    "outdent": "h",
+    "outdent": "shift+h",
     "pasteNext": "p",
     "pastePrev": "shift+p",
     "prevNewBlock": "shift+o",
@@ -65,5 +69,5 @@
     ],
     "emoji": "mod+/"
   },
-  "settingsVersion": "v2"
+  "settingsVersion": "v4"
 }
