@@ -10,25 +10,24 @@ call plug#begin('~/.vim/rucksack-plugged')
 
 "  plugin library: https://vimawesome.com
 Plug 'tpope/vim-sensible'                " defaults that everyone can agree on.
-Plug '/usr/local/opt/fzf'                " FuZzy Finder (core functions and :FZF command)
-Plug '/opt/homebrew/opt/fzf'             " 👆 on arm64 homebrew
-Plug 'junegunn/fzf.vim'                  " + additional .vimrc commands and functions
+source ~/rucksack/fzf/plugs.vimrc        " fuzzy search
 
-"Plug 'altercation/vim-colors-solarized'  " my favorite color scheme
 Plug 'vim-airline/vim-airline'           " status line
 Plug 'vim-airline/vim-airline-themes'    " + themes
-Plug 'airblade/vim-gitgutter'            " git-diffs in the gutter
 
 Plug 'mg979/vim-visual-multi'            " Multi-cursor (ctrl+n)
 Plug 'tpope/vim-surround'                " Change surrounding tokens (cs, ds, ys)
 
 Plug 'dense-analysis/ale'                " ALE : linting
 Plug 'tpope/vim-commentary'              " Toggle comments
+
+Plug 'airblade/vim-gitgutter'            " git-diffs in the gutter
 Plug 'tpope/vim-fugitive'                " Git client
 
 Plug 'elixir-editors/vim-elixir'         " vim config for Elixir
 Plug 'hashivim/vim-terraform'            " without this, terraform editing is milquetoast
 
+"Plug 'altercation/vim-colors-solarized'  " my favorite color scheme
 
 call plug#end()
 
@@ -42,28 +41,7 @@ endif
 " Plugin Configuration (alphabetical)
 
 "==- fzf
-"  https://github.com/junegunn/fzf/blob/master/README-VIM.md
-
-let g:fzf_layout = { 'window': { 'width': 0.90, 'height': 0.9}}
-let g:fzf_history_dir = '~/.fzf/fzf-history'
-
-"==- fzf.vim
-"  https://github.com/junegunn/fzf.vim
-"
-let g:fzf_preview_window = ['right,55%', 'ctrl-/']
-
-nmap <c-p> :Files<CR>
-
-" Mapping selecting mappings (in various modes)
-nmap <leader><tab> <plug>(fzf-maps-n)
-xmap <leader><tab> <plug>(fzf-maps-x)
-omap <leader><tab> <plug>(fzf-maps-o)
-
-" Insert mode completion
-imap <c-x><c-k> <plug>(fzf-complete-word)
-imap <c-x><c-f> <plug>(fzf-complete-path)
-imap <c-x><c-l> <plug>(fzf-complete-line)
-
+source ~/rucksack/fzf/.vimrc
 
 "==- vim-airline
 let g:airline_theme="solarized"
