@@ -22,11 +22,11 @@
 	<key>finderSelectionHotkey</key>
 	<dict>
 		<key>key</key>
-		<integer>0</integer>
+		<integer>44</integer>
 		<key>mod</key>
 		<integer>1835008</integer>
 		<key>string</key>
-		<string>A</string>
+		<string>/</string>
 	</dict>
 	<key>showWithCtrl</key>
 	<false/>
