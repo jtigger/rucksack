@@ -30,7 +30,7 @@
 #  https://developer.1password.com/docs/ssh/agent/config
 [[ssh-keys]]
 account = "Mechanical Orchard"
-vault = "Private"
+vault = "Employee"
 
 [[ssh-keys]]
 account = "The Ryans"
