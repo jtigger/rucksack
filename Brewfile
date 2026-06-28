@@ -7,134 +7,46 @@ tap "teamookla/speedtest"
 tap "aquasecurity/trivy"
 
 # ===- Essentials -===
-brew "bash"
-brew "bash-completion"
-brew "bat"
-brew "brew-cask-completion"
+cask "ghostty"    # badass terminal
+cask "1password/tap/1password-cli"
+cask "alfred"
+cask "rectangle"
+
+brew "starship"   # informative prompts with minimal effort
+
+brew "bat"        # cat replacement [required-by: fzf]
 brew "colordiff"
 brew "entr"
-brew "fd"
-brew "fzf"
+brew "fd"         # Fast 'find' replacement -- https://github.com/sharkdp/fd  [required-by: fzf]
 brew "git"
-brew "ripgrep"
-brew "tldr"
-brew "tree"
+brew "rsync"      # Replace ancient macOS-supplied version
+brew "tree"       # [required-by: fzf]
 brew "watch"
-brew "dos2unix"
+
+brew "fzf"        # FuZzy Finder -- https://github.com/junegunn/fzf#using-homebrew
+
+# ===- Project Supporting Tools -===
+brew "mise"       # tool version manager + environment var manager + make tool (replaced asdf)
 brew "direnv"
-
-brew "tmux"
-cask "iterm2"
-#cask "ngrok"
-cask "rectangle"
-cask "tuple"
-cask "fork"
-brew "blueutil"
-
-# cask "1password"
-cask "1password/tap/1password-cli"
-cask "alfred"            # current = v5
-# cask "signal"
-cask "logseq"
-
-# ===- Nice-to-haves -===
-#brew "vmware-tanzu/carvel/vendir"
-brew "speedtest"
-
-# Browsers
-# cask "firefox"
-# cask "google-chrome"
-# cask "tor-browser"
-# brew "brave-browser"
-brew "defaultbrowser"    # ref: Alfred Workflow
-
-# ===- Encryption -===
-#brew "sops"
-#brew "age"
-
-
-# ===- Container Runtimes -===
-# > Podman
-# brew "hyperkit"          # required by podman
-# brew "podman"
-
-# > Rancher Desktop
-# cask "rancher"
-
-# ===- Kubernetes Distro -===
-# brew "kind"
-# brew "minikube"
-
-
-# ===- Common Development Tooling -===
-tap "pivotal/tap"
-brew "pivotal/tap/git-together"
-brew "gh"                       # GitHub CLI
-brew "asdf"                     # installing multiple versions of languages (e.g. Elixir)
-
-
-# ===- IDEs -===
-cask "visual-studio-code"
+brew "gh"         # GitHub CLI
 
 
 # ===- Text File Processing -===
 brew "htmlq" # HTML
 brew "jq"    # JSON
-brew "yq"
-brew "vmware-tanzu/carvel/ytt"
+brew "yq"    # YAML
+
+# ===- Convenience Tooling -===
+brew "blueutil"   # bluetooth utility (e.g. used by up.sh/down.sh)
+
+# ===- Productivity Tools -===
+cask "logseq"
 
 
-# ===- Go -===
-# brew "go"
-# brew "golangci-lint"
-# cask "goland"
-# brew "go@1.17" # prior versions
+# ===- Deprecated -===
+#   tools to be removed when fully moved off bash
+brew "bash"
+brew "bash-completion"
+brew "brew-cask-completion"
+brew "ripgrep"
 
-# ===- Java -===
-# (see https://stackoverflow.com/a/32811065)
-# brew "java"                                  # Lastest (OpenJDK)
-# brew "java11"                              # Java11
-# cask "adoptopenjdk/openjdk/adoptopenjdk8"  # Java8
-# cask "intellij"
-
-# ===- JavaScript -===
-brew "npm"
-brew "node"
-
-
-# ===- Network Diagnostics -===
-# cask "zenmap"        # nmap and friends
-
-# ===- Kubernetes Tooling -===
-# brew "k9s"
-
-brew "vmware-tanzu/carvel/kapp"
-# brew "kwt"
-
-# ===- Image Building -===
-# brew "buildpacks/tap/pack"    # one of the builders to can configure with kbld
-# brew "ko"   # images from Go apps
-# brew "trivy"
-
-
-# ===- Graphics Tools -===
-# brew "imagemagick"   # swissarmy image manipulation tool
-# cask "gimp"
-# brew "potrace"       # rendering SVG from bitmaps
-# cask "inkscape"      # GUI for potrace
-
-
-# ===- Project-Specific -===
-# brew "gnu-tar"
-cask "dbeaver-community"    # dep: SQL Server
-
-# ===- Cloud Providers -===
-tap "weaveworks/tap"
-brew "eksctl"
-brew "terraformer"
-
-tap "hashicorp/tap"
-brew "terraform"
-
-# ===- AWS Specific Tooling -===
-brew "aws2-wrap"   # https://github.com/linaro-its/aws2-wrap
