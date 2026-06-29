@@ -1,28 +1,33 @@
-#!/usr/bin/env bash
-set -euo pipefail
+#!/usr/bin/env zsh
+setopt errexit nounset pipefail
 
 current_repo=""
 trap 'echo "FAILED in: ${current_repo:-<none>}" >&2' ERR
 
-set -x
+zk_repos=(~/workspace/**/*-zk(N/))
 
-ZK_GLOBS=(
-  ~/workspace/jtigger/*-zk
-  ~/workspace/johnnycyberseed/*-zk
-)
+commit_prompt='Write a single conventional commit message (https://www.conventionalcommits.org/) summarizing these changes to a Logseq knowledge graph.
+Output ONLY the commit message — no preamble, no code fences.'
 
-shopt -s nullglob
-for glob in "${ZK_GLOBS[@]}"; do
-  for repo in $glob; do
-    current_repo="$repo"
-    cd "$repo"
+for repo in $zk_repos; do
+  current_repo="${repo/#$HOME/~}"
+  cd "$repo"
 
-    if [ -n "$(git status --porcelain)" ]; then
-      git add -A
-      msg=$(git diff --cached | claude -p --model haiku "Write a single conventional commit message (https://www.conventionalcommits.org/) summarizing these changes to a Logseq knowledge graph. Output ONLY the commit message — no preamble, no code fences.")
-      git commit -m "$msg"
-    fi
+  if [ "$(git rev-parse --show-toplevel 2>/dev/null)" != "$repo" ]; then
+    echo "⏩ ${current_repo}"
+    continue
+  fi
 
-    git push
-  done
+  if [ -n "$(git status --porcelain)" ]; then
+    git add -A
+    msg=$(git diff --cached | claude -p --model haiku "$commit_prompt")
+    git commit -q -m "$msg"
+  fi
+
+  if [ -n "$(git log --oneline HEAD --not --remotes)" ]; then
+    git push -q
+    echo "📡 ${current_repo}"
+  else
+    echo "👌 ${current_repo}"
+  fi
 done
