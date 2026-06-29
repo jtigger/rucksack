@@ -19,6 +19,33 @@ $fossil_branch\
 $fossil_metrics\
 $pijul_channel\
 $docker_context\
+$buf\
+$guix_shell\
+$nix_shell\
+$conda\
+$pixi\
+$meson\
+$spack\
+$memory_usage\
+$crystal\
+$custom\
+$cmd_duration\
+$line_break\
+$jobs\
+$battery\
+$time\
+$container\
+$netns\
+$os\
+$shell\
+$git_branch\
+$git_commit\
+$git_state\
+$git_metrics\
+$git_status\
+$hg_branch\
+$hg_state\
+(\
 $package\
 $bun\
 $c\
@@ -67,35 +94,12 @@ $solidity\
 $swift\
 $xmake\
 $zig\
-$buf\
-$guix_shell\
-$nix_shell\
-$conda\
-$pixi\
-$meson\
-$spack\
-$memory_usage\
+)\
+(\n\
 $env_var\
 $mise\
-$crystal\
-$custom\
-$cmd_duration\
-$line_break\
-$jobs\
-$battery\
-$time\
-$container\
-$netns\
-$os\
-$shell\
-$git_branch\
-$git_commit\
-$git_state\
-$git_metrics\
-$git_status\
-$hg_branch\
-$hg_state\
 $direnv\
+)\
 $status\
 $directory\
 \n\
@@ -116,10 +120,12 @@ truncation_symbol = '.../'
 
 [direnv]
 disabled = false
-loaded_msg = '⚡️'
 allowed_msg = '👍'
-not_allowed_msg = '👎'
 denied_msg = '🙅'
+loaded_msg = '⚡️'
+not_allowed_msg = '👎'
+symbol = '📂'
+unloaded_msg = '💤'
 
 [gcloud]
 format = '[g$symbol$account(@$domain)(\($project\))]($style) '
@@ -130,8 +136,24 @@ style = 'yellow'
 [git_metrics]
 disabled = false
 
+[git_status]
+modified = '𝚫 '
+untracked = '？'
+staged = '🥡'
+style = 'bold yellow'
+
+[java]
+style = 'dimmed yellow'
+
 [kubernetes]
 disabled = false
+
+[mise]
+disabled = false
+
+[package]
+format = '[$symbol$version]($style) '
+style = 'dimmed yellow'
 
 [status]
 disabled = false
