@@ -1,15 +1,5 @@
 format = """
-$kubernetes\
-$terraform\
-$typst\
-$vlang\
-$vagrant\
-$aws\
-$gcloud\
-$openstack\
-$azure\
-$username\
-$hostname\
+($kubernetes$terraform$typst$vlang$vagrant$aws$gcloud$openstack$azure)\
 $localip\
 $shlvl\
 $singularity\
@@ -29,124 +19,86 @@ $spack\
 $memory_usage\
 $crystal\
 $custom\
-$cmd_duration\
 $line_break\
-$jobs\
 $battery\
-$time\
 $container\
 $netns\
 $os\
 $shell\
-$git_branch\
-$git_commit\
-$git_state\
-$git_metrics\
-$git_status\
-$hg_branch\
-$hg_state\
-(\
-$package\
-$bun\
-$c\
-$cmake\
-$cobol\
-$cpp\
-$daml\
-$dart\
-$deno\
-$dotnet\
-$elixir\
-$elm\
-$erlang\
-$fennel\
-$fortran\
-$gleam\
-$golang\
-$gradle\
-$haskell\
-$haxe\
-$helm\
-$java\
-$julia\
-$kotlin\
-$lua\
-$maven\
-$mojo\
-$nim\
-$nodejs\
-$ocaml\
-$odin\
-$opa\
-$perl\
-$php\
-$pulumi\
-$purescript\
-$python\
-$quarto\
-$raku\
-$rlang\
-$red\
-$ruby\
-$rust\
-$scala\
-$solidity\
-$swift\
-$xmake\
-$zig\
-)\
-(\n\
-$env_var\
-$mise\
-$direnv\
-)\
-$status\
-$directory\
-\n\
-$sudo\
-$character"""
+($git_branch$git_commit$git_state$git_metrics$git_status$hg_branch$hg_state)\
+($package$bun$c$cmake$cobol$cpp$daml$dart$deno$dotnet$elixir$elm$erlang$fennel$fortran$gleam$golang$gradle$haskell$haxe$helm$java$julia$kotlin$lua$maven$mojo$nim$nodejs$ocaml$odin$opa$perl$php$pulumi$purescript$python$quarto$raku$rlang$red$ruby$rust$scala$solidity$swift$xmake$zig\n)\
+($env_var$mise$direnv)\
+$username@$hostname:$directory\n\
+$jobs$status$cmd_duration$sudo$character"""
 
-add_newline = true
+right_format = "$time"
+add_newline = false
 
 [character]
 success_symbol = '\$'
 error_symbol = '\$'
 
+[cmd_duration]
+format = '\([$duration]($style)\) '
+min_time = 2_000
+min_time_to_notify = 10_000
+show_notifications = true
+
 [directory]
-style = 'bold white'
+style = 'bold bright-white'
 truncate_to_repo = false
 truncation_length = 20
 truncation_symbol = '.../'
 
 [direnv]
-disabled = false
 allowed_msg = '👍'
 denied_msg = '🙅'
+disabled = false
 loaded_msg = '⚡️'
 not_allowed_msg = '👎'
 symbol = '📂'
 unloaded_msg = '💤'
 
 [gcloud]
-format = '[g$symbol$account(@$domain)(\($project\))]($style) '
+format = '[g$symbol${account}@(\($project\))]($style) '
+symbol = '🌥️'
 
 [git_branch]
 style = 'yellow'
+format = '[$symbol$branch(:$remote_branch)]($style) '
 
 [git_metrics]
 disabled = false
 
 [git_status]
 modified = '𝚫 '
-untracked = '？'
 staged = '🥡'
 style = 'bold yellow'
+untracked = '？'
+
+[hostname]
+format = '[$hostname]($style)'
+ssh_only = false
+style = 'white'
+trim_at = ''
 
 [java]
 style = 'dimmed yellow'
 
+[jobs]
+symbol = '🅿️'
+
 [kubernetes]
 disabled = false
+
+[[kubernetes.contexts]]
+context_pattern = "gke_vintro-production.*"
+context_alias = "gke-vintro-production 🚨"
+style = "bold red"
+
+[[kubernetes.contexts]]
+context_pattern = "gke_vintro-(?P<cluster>[\\w]+).*"
+context_alias = "gke-vintro-$cluster"
 
 [mise]
 disabled = false
@@ -157,11 +109,23 @@ style = 'dimmed yellow'
 
 [status]
 disabled = false
-success_symbol = '✓ '
-success_style = 'bold green'
-symbol = '𐄂 '
 failure_style = 'bold red'
 map_symbol = true
+success_style = 'bold green'
+success_symbol = '✓ '
+symbol = '𐄂 '
 
 [sudo]
 disabled = false
+format = '[$symbol]($style)'
+symbol = '🦄'
+
+[time]
+disabled = false
+format = '[$time]($style) '
+utc_time_offset = "0"
+
+[username]
+format = '[$user]($style)'
+show_always = true
+style_user = 'grey'
