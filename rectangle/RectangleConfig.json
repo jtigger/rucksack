@@ -50,7 +50,7 @@
       "int" : 0
     },
     "cycleSizesIsChanged" : {
-      "bool" : false
+      "bool" : true
     },
     "cyclingOverlapMaxCascade" : {
       "int" : 1
@@ -83,7 +83,7 @@
       "float" : 0.3
     },
     "footprintAnimationDurationMultiplier" : {
-      "float" : 0.75
+      "float" : 0
     },
     "footprintBorderWidth" : {
       "float" : 2
@@ -116,7 +116,7 @@
       "int" : 0
     },
     "landscapeSnapAreas" : {
-      "string" : "[5,{\"compound\":-3},4,{\"compound\":-2},6,{\"action\":13},7,{\"compound\":-4},1,{\"action\":15},8,{\"action\":14},2,{\"action\":2},3,{\"action\":16}]"
+      "string" : "[3,{\"action\":16},6,{\"action\":13},7,{\"compound\":-4},8,{\"action\":14},4,{\"compound\":-2},5,{\"compound\":-3},2,{\"action\":2},1,{\"action\":15}]"
     },
     "launchOnLogin" : {
       "bool" : true
@@ -182,7 +182,7 @@
       "int" : 0
     },
     "selectedCycleSizes" : {
-      "int" : 0
+      "int" : 31
     },
     "shortEdgeSnapAreaSize" : {
       "float" : 145
@@ -251,7 +251,7 @@
       "int" : 0
     },
     "unsnapRestore" : {
-      "int" : 0
+      "int" : 2
     },
     "verticalSplitRatio" : {
       "float" : 50
@@ -260,7 +260,7 @@
       "float" : 30
     },
     "windowSnapping" : {
-      "int" : 0
+      "int" : 2
     }
   },
   "shortcuts" : {
@@ -269,12 +269,12 @@
       "modifierFlags" : 1835008
     },
     "center" : {
-      "keyCode" : 45,
+      "keyCode" : 8,
       "modifierFlags" : 1835008
     },
     "larger" : {
-      "keyCode" : 30,
-      "modifierFlags" : 1966080
+      "keyCode" : 24,
+      "modifierFlags" : 1835008
     },
     "leftHalf" : {
       "keyCode" : 123,
@@ -285,12 +285,12 @@
       "modifierFlags" : 1835008
     },
     "nextDisplay" : {
-      "keyCode" : 30,
-      "modifierFlags" : 1835008
+      "keyCode" : 123,
+      "modifierFlags" : 1966080
     },
     "previousDisplay" : {
-      "keyCode" : 33,
-      "modifierFlags" : 1835008
+      "keyCode" : 124,
+      "modifierFlags" : 1966080
     },
     "reflowTodo" : {
       "keyCode" : 45,
@@ -301,8 +301,8 @@
       "modifierFlags" : 1835008
     },
     "smaller" : {
-      "keyCode" : 33,
-      "modifierFlags" : 1966080
+      "keyCode" : 27,
+      "modifierFlags" : 1835008
     },
     "toggleTodo" : {
       "keyCode" : 11,
