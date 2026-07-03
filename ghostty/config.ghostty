@@ -1,0 +1,14 @@
+cursor-style = block
+cursor-style-blink = true
+
+macos-auto-secure-input = false
+
+mouse-hide-while-typing = true
+mouse-reporting = true
+
+shell-integration-features = no-cursor
+
+# theme = iTerm2 Solarized Light
+theme = iTerm2 Solarized Dark
+
+undo-timeout = 5m
