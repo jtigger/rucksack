@@ -65,5 +65,5 @@ export FZF_CTRL_T_COMMAND="${FZF_DEFAULT_COMMAND}"
 source <(fzf --zsh)
 
 if [[ "$HELP_MODE" == "solicitous" ]]; then
-  echo "⚡ fzf activated. [ alt+c = cd | ctrl+r = hist | ctrl+t = files ]"
+  echo "⚡ fzf   ( alt+c = cd | ctrl+r = hist | ctrl+t = files )"
 fi

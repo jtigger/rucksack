@@ -1,4 +1,3 @@
-
 # ===- Core Aliases -===
 alias l='ls -alFGh'     # all files; long form; non-file suffixes; colorize; human-readable sizes
 alias ll='ls -alFGh'    # ^^
@@ -10,6 +9,7 @@ alias mv='mv -vn'  # verbose; no overwriting
 alias rm='rm -vI'  # verbose; confirm if 3 or more files
 
 alias du='du -h'   # human-readable sizes
+alias ws='cd ~/workspace' 
 
 # ===- Shell History -===
 HISTFILE=~/.zsh_history  # persist history to disk (not guaranteed without this)
@@ -24,9 +24,19 @@ export PATH="$HOME/.local/bin:$PATH"
 export PATH="$PATH:$HOME/rucksack/bin"
 export PATH="$PATH:$HOME/rucksack/OSX/bin"
 
-
-export HELP_MODE=solicitous
 # ===- Common Add-on Tooling -===
+export HELP_MODE=solicitous
 source "$HOME/rucksack/fzf/.zshrc"
 
-eval "$(starship init zsh)"
+eval "$(starship init zsh)"   # configure shell prompt
+eval "$(mise activate zsh)" && [[ ${HELP_MODE} == "solicitous" ]] && echo "⚡ mise"    # tool/env switcher
+eval "$(direnv hook $SHELL)" && [[ ${HELP_MODE} == "solicitous" ]] && echo "⚡ direnv" # env switcher
+
+# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+fpath=($HOME/.docker/completions $fpath)
+autoload -Uz compinit
+compinit
+# End of Docker CLI completions
+
+[[ -f ~/$(hostname).zshrc ]] && source ~/$(hostname).zshrc || echo "(no machine-specific config detected for \"$(hostname)\".)"
+
