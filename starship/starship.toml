@@ -64,17 +64,27 @@ format = '[g$symbol${account}@(\($project\))]($style) '
 symbol = '🌥️'
 
 [git_branch]
-style = 'yellow'
+always_show_remote = true
+style = 'bold yellow'
 format = '[$symbol$branch(:$remote_branch)]($style) '
+
+[git_commit]
+only_detached = false
+style = "yellow"
 
 [git_metrics]
 disabled = false
 
 [git_status]
+ahead = '📤${count}'
+behind = '📫${count}'
+diverged = '📤${ahead_count}📫${behind_count}'
+
 modified = '𝚫 '
 staged = '🥡'
 style = 'bold yellow'
 untracked = '？'
+
 
 [hostname]
 format = '[$hostname]($style)'
