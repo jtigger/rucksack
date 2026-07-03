@@ -4,6 +4,8 @@
 <dict>
 	<key>fallbacksMode</key>
 	<integer>1</integer>
+	<key>showContacts</key>
+	<false/>
 	<key>showContactsUsingMetadata</key>
 	<true/>
 </dict>
