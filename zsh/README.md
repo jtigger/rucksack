@@ -4,7 +4,10 @@
 
    ```zsh
    cd ~
-   ln -s rucksack/zsh/.zshrc
-   mkdir -p $( dirname $( bat --config-file ) )
-   ln -s rucksack/bash/.bat-config $( bat --config-file ) 
+   ln -s ~/rucksack/zsh/.zshrc .
    ```
+
+# Usually also install
+
+- bat
+- fzf
