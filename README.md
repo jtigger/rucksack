@@ -14,7 +14,7 @@ Workstation setup essentials.
 1. Install software via brew bundle:
 
    ```bash
-   $ ( cd ~/rucksack && brew bundle )
+   $ ( cd ~/rucksack && brew bundle --file=essentials.Brewfile )
    ```
    
 1. For each "pocket" you want to install, follow the instructions in the `README.md`
