@@ -33,7 +33,7 @@
   rebase = true
 
 [status]
-  ; include anything that's been stashed in `git status`
+  # include anything that's been stashed in `git status`
   showStash = true
 
 [init]
@@ -43,6 +43,7 @@
   format = ssh
 
 [gpg "ssh"]
+  # use signing key provided by 1Password
   program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
 
 [commit]
