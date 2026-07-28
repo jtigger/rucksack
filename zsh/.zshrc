@@ -19,6 +19,9 @@ setopt SHARE_HISTORY     # write+read history across all open terminals in real 
 setopt HIST_IGNORE_DUPS  # skip saving a command if identical to the previous one
 setopt HIST_IGNORE_SPACE # prefix a command with a space to keep it out of history
 
+# less: don't clear output / quit if output fits / render ANSI colors
+export LESS='--no-init --quit-if-one-screen --RAW-CONTROL-CHARS'
+
 # ===- Core PATH -===
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$PATH:$HOME/rucksack/bin"
