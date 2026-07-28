@@ -5,11 +5,11 @@
 	<key>hotkey</key>
 	<dict>
 		<key>key</key>
-		<integer>11</integer>
+		<integer>1</integer>
 		<key>mod</key>
 		<integer>1966080</integer>
 		<key>string</key>
-		<string>B</string>
+		<string>S</string>
 	</dict>
 </dict>
 </plist>
