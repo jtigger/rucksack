@@ -41,9 +41,9 @@ effort_level=$(echo "$input" | jq -r '.effort.level // empty')
 used_pct=$(echo "$input" | jq -r '.context_window.used_percentage // empty')
 remaining_pct=$(echo "$input" | jq -r '.context_window.remaining_percentage // empty')
 
-session_segment=""
+session_segment="🤖"
 if [ -n "$model_name" ]; then
-  session_segment="$model_name"
+  session_segment="${session_segment}${model_name}"
   [ -n "$effort_level" ] && session_segment="${session_segment} (${effort_level})"
 fi
 if [ -n "$used_pct" ]; then
@@ -55,6 +55,40 @@ if [ -n "$used_pct" ]; then
   fi
   session_segment="${session_segment}${session_segment:+ | }${ctx_str}"
 fi
-[ -n "$session_segment" ] && session_segment=" \033[2;36m${session_segment}\033[0m"
+session_segment=" \033[2;36m${session_segment}\033[0m"
 
-printf "\033[1;97m%s\033[0m%b%b\n" "$dir_display" "$git_segment" "🤖 $session_segment"
+# --- Plan usage: 5-hour (session) + 7-day (weekly) rate limits (dimmed cyan) ---
+# Only present for Claude.ai Pro/Max subscribers, after the first API response.
+# Each window may be independently absent, so guard with // empty.
+plan_segment="📜"
+five_hour_pct=$(echo "$input" | jq -r '.rate_limits.five_hour.used_percentage // empty')
+seven_day_pct=$(echo "$input" | jq -r '.rate_limits.seven_day.used_percentage // empty')
+five_hour_reset=$(echo "$input" | jq -r '.rate_limits.five_hour.resets_at // empty')
+seven_day_reset=$(echo "$input" | jq -r '.rate_limits.seven_day.resets_at // empty')
+
+# Human-friendly "resets in" from a Unix epoch (e.g. "2h13m", "3d4h").
+reset_in() {
+  local target now diff d h m
+  target="$1"
+  now=$(date +%s)
+  diff=$((target - now))
+  [ "$diff" -lt 0 ] && diff=0
+  d=$((diff / 86400)); h=$(((diff % 86400) / 3600)); m=$(((diff % 3600) / 60))
+  if [ "$d" -gt 0 ]; then printf '%dd%dh' "$d" "$h"
+  elif [ "$h" -gt 0 ]; then printf '%dh%dm' "$h" "$m"
+  else printf '%dm' "$m"; fi
+}
+
+if [ -n "$five_hour_pct" ]; then
+  seg="5h ${five_hour_pct%.*}%"
+  [ -n "$five_hour_reset" ] && seg="${seg} ($(reset_in "$five_hour_reset"))"
+  plan_segment="${plan_segment}${seg}"
+fi
+if [ -n "$seven_day_pct" ]; then
+  seg="7d ${seven_day_pct%.*}%"
+  [ -n "$seven_day_reset" ] && seg="${seg} ($(reset_in "$seven_day_reset"))"
+  plan_segment="${plan_segment}${plan_segment:+ · }${seg}"
+fi
+plan_segment=" \033[2;36m ${plan_segment}\033[0m"
+
+printf "\033[1;97m%s\033[0m%b%b%b\n" "$dir_display" "$git_segment" "$session_segment" "$plan_segment"
