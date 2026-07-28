@@ -15,7 +15,7 @@ brew "git"
 brew "tree"       # [required-by: fzf]
 
 # ===- Productivity Tools -===
-cask "logseq"
+cask "logseq-og"
 
 # ===- Project Supporting Tools -===
 brew "mise"       # tool version manager + environment var manager + make tool (replaced asdf)
