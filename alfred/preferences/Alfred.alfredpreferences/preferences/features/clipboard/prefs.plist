@@ -21,6 +21,8 @@
 	<integer>3</integer>
 	<key>snippetKeyword</key>
 	<string>:</string>
+	<key>snippetKeywordEnabled</key>
+	<false/>
 	<key>snippetMatchFields</key>
 	<integer>1</integer>
 	<key>snippetMatchWordBased</key>
