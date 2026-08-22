@@ -1,0 +1,3 @@
+# ===- Network Scanning -===
+
+brew "nmap"
