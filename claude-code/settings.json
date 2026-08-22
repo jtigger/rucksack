@@ -1,8 +1,29 @@
 {
-  "tui": "fullscreen",
-  "theme": "dark",
+  "model": "claude-opus-4-8",
   "statusLine": {
     "type": "command",
     "command": "bash \"$HOME/.claude/statusline-command.sh\""
-  }
+  },
+  "env": {
+    "CLAUDE_CODE_DISABLE_MOUSE_CLICKS": "0"
+  },
+  "enabledPlugins": {
+    "communicating-with-user@jtigger": true,
+    "writing-commit-messages@jtigger": true,
+    "git-guardrails@jtigger": true,
+    "writing-adrs@jtigger": true
+  },
+  "extraKnownMarketplaces": {
+    "jtigger": {
+      "source": {
+        "source": "directory",
+        "path": "/Users/jtigger/workspace/shared/lib/skills"
+      }
+    }
+  },
+  "promptSuggestionEnabled": false,
+  "awaySummaryEnabled": false,
+  "tui": "fullscreen",
+  "theme": "dark",
+  "autoCompactEnabled": true
 }
